@@ -11,18 +11,24 @@ abstract class ProviderBase {
 		$this->page = $page;
 	}
 
-	abstract function countShares();
 
-	public function count()
-	{
-		if (isset($this->count)) {
-			return $this->count;
-		}
+    public function __get($key)
+    {
+        switch ($key) {
+            case 'shareApp':
+            case 'shareUrl':
+            case 'shareCount':
+                return $this->$key = $this->$key();
+        }
+    }
 
-		return $this->count = $this->countShares();
-	}
+    public function shareApp()
+    {
+        return $this->shareUrl();
+    }
 
-    public static function executeRequest($url, $post = false, array $headers = null)
+
+    protected static function executeRequest($url, $post = false, array $headers = null)
     {
         $connection = curl_init();
 
@@ -63,19 +69,19 @@ abstract class ProviderBase {
         return $content;
     }
 
-    public function getJson($url, array $pageParams = null, array $getParams = array(), $post = false, array $headers = null)
+    protected function getJson($url, array $pageParams = null, array $getParams = array(), $post = false, array $headers = null)
     {
     	return json_decode(self::executeRequest($this->buildUrl($url, $pageParams, $getParams), $post, $headers), true);
     }
 
-    public function getJsonp($url, array $pageParams = null, array $getParams = array(), $post = false, array $headers = null)
+    protected function getJsonp($url, array $pageParams = null, array $getParams = array(), $post = false, array $headers = null)
     {
     	preg_match("/^\w+\((.*)\)$/", self::executeRequest($this->buildUrl($url, $pageParams, $getParams), $post, $headers), $matches);
 
     	return json_decode($matches[1], true);
     }
 
-    public function buildUrl($url, array $pageParams = null, array $getParams = array())
+    protected function buildUrl($url, array $pageParams = null, array $getParams = array())
     {
     	if ($pageParams) {
     		$getParams += $this->page->get($pageParams);

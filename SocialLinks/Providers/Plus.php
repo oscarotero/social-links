@@ -7,7 +7,7 @@ class Plus extends ProviderBase implements ProviderInterface {
         return $this->buildUrl('https://plus.google.com/share', ['url']);
     }
 
-    public function countShares()
+    public function shareCount()
     {
         $url = $this->page->getUrl();
 

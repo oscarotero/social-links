@@ -7,7 +7,7 @@ class Pinterest extends ProviderBase implements ProviderInterface {
         return $this->buildUrl('https://www.pinterest.com/pin/create/button/', ['url', 'title' => 'description', 'media' => 'image']);
     }
 
-    public function countShares()
+    public function shareCount()
     {
     	$count = $this->getJsonp('https://api.pinterest.com/v1/urls/count.json', ['url']);
 

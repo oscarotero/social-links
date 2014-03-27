@@ -70,15 +70,4 @@ class Page {
 
         return $data;
     }
-
-    public function count(array $providers)
-    {
-        $total = 0;
-
-        foreach ($providers as $provider) {
-            $total = $this->__get($provider)->countShares();
-        }
-
-        return $total;
-    }
 }

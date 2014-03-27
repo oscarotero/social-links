@@ -13,7 +13,7 @@ class Facebook extends ProviderBase implements ProviderInterface {
             ], ['s' => 100]);
     }
 
-    public function countShares()
+    public function shareCount()
     {
     	$count = $this->getJson('https://api.facebook.com/restserver.php', [
             'url' => 'urls[0]'

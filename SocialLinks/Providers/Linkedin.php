@@ -7,7 +7,7 @@ class Linkedin extends ProviderBase implements ProviderInterface {
         return $this->buildUrl('https://www.linkedin.com/shareArticle', ['url', 'title', 'text' => 'summary'], ['mini' => true]);
     }
 
-    public function countShares()
+    public function shareCount()
     {
     	$count = $this->getJson('https://www.linkedin.com/countserv/count/share', ['url'], ['format' => 'json']);
 
