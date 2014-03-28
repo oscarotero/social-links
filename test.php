@@ -9,7 +9,11 @@ $data = empty($_GET) ? ['url' => null, 'title' => null, 'text' => null, 'image' 
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
+
 		<title>Social Links</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<style type="text/css">
 			body {
@@ -46,7 +50,6 @@ $data = empty($_GET) ? ['url' => null, 'title' => null, 'text' => null, 'image' 
 			label strong {
 				display: inline-block;
 				width: 100px;
-				text-align: right;
 				margin-right: 10px;
 			}
 			input[type="submit"] {

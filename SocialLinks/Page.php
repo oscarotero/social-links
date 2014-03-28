@@ -5,11 +5,17 @@ class Page {
     protected $providers = [];
     protected $info = [
         'url' => null,
-        'title' => null
+        'title' => null,
+        'text' => null,
+        'image' => null
     ];
 
     public function __construct(array $info)
     {
+        if (array_diff_key($info, $this->info)) {
+            throw new \Exception("Only the following fields are available:".implode(',', array_keys($this->info)));
+        }
+
         $this->info = $info;
     }
 
