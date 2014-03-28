@@ -8,9 +8,9 @@ class Page {
         'title' => null
     ];
 
-    public function __construct($url)
+    public function __construct(array $info)
     {
-        $this->setUrl($url);
+        $this->info = $info;
     }
 
     public function __get($key)
@@ -28,24 +28,9 @@ class Page {
         }
     }
 
-    public function setUrl($url)
-    {
-        $this->info['url'] = $url;
-    }
-
     public function getUrl()
     {
         return $this->info['url'];
-    }
-
-    public function set(array $info)
-    {
-        if (isset($info['url'])) {
-            $this->setUrl($info['url']);
-            unset($info['url']);
-        }
-
-        $this->info = array_replace($this->info, $info);
     }
 
     public function get(array $info = null)

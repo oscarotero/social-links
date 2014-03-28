@@ -24,7 +24,7 @@ abstract class ProviderBase {
 
     public function shareApp()
     {
-        return $this->shareUrl();
+        return null;
     }
 
 
@@ -58,11 +58,7 @@ abstract class ProviderBase {
         	curl_setopt($connection, CURLOPT_HTTPHEADER, $headers);
         }
 
-        $content = curl_exec($connection);
-
-        if ($content === false) {
-        	throw new \Exception("Error Executing Request");
-        }
+        $content = curl_exec($connection) ?: '';
 
         curl_close($connection);
 
