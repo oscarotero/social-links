@@ -16,7 +16,7 @@ $page = new Page([
 	'url' => 'http://mypage.com',
 	'title' => 'Page title',
 	'text' => 'Extended page description',
-	'image' => 'http://mypage.com/image.png
+	'image' => 'http://mypage.com/image.png'
 ]);
 
 //Use the properties to get the providers info, for example:
