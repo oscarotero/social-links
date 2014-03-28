@@ -1,5 +1,5 @@
 <?php
-require dirname(__DIR__).'/SocialLinks/autoloader.php';
+require __DIR__.'/SocialLinks/autoloader.php';
 
 use SocialLinks\Page;
 
@@ -108,5 +108,9 @@ $data = empty($_GET) ? ['url' => null, 'title' => null, 'text' => null, 'image' 
 
 			<input type="submit" value="Send">
 		</form>
+
+		<footer>
+			<p><a href="https://github.com/oscarotero/social-links">View in github</a></p>
+		</footer>
 	</body>
 </html>
