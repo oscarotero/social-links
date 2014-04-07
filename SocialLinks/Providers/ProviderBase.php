@@ -38,9 +38,9 @@ abstract class ProviderBase {
     /**
      * Executes a request and return the response
      *
-     * @param string        $url
-     * @param boolean|array $post
-     * @param array         $headers
+     * @param string         $url
+     * @param boolean|string $post
+     * @param array          $headers
      *
      * @return string
      */
