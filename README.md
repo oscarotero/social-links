@@ -1,6 +1,8 @@
 SocialLinks
 ===========
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/oscarotero/social-links/badges/quality-score.png?s=297eaeb181f11caae68c961095ec67c76a57d4fa)](https://scrutinizer-ci.com/g/oscarotero/social-links/)
+
 Created by Oscar Otero <http://oscarotero.com> <oom@oscarotero.com>
 
 This is a simple library to generate buttons to share an url or count the current shares using multiple providers (facebook, twitter, etc)
