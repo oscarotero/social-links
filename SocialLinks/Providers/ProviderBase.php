@@ -12,6 +12,9 @@ abstract class ProviderBase {
 	}
 
 
+    /**
+     * Magic method to calculate and store the properties
+     */
     public function __get($key)
     {
         switch ($key) {
@@ -22,12 +25,25 @@ abstract class ProviderBase {
         }
     }
 
+
+    /**
+     * Default shareApp for all classes extending this class
+     */
     public function shareApp()
     {
         return null;
     }
 
 
+    /**
+     * Executes a request and return the response
+     *
+     * @param string         $url
+     * @param boolean|string $post
+     * @param array          $headers
+     *
+     * @return string
+     */
     protected static function executeRequest($url, $post = false, array $headers = null)
     {
         $connection = curl_init();
@@ -65,16 +81,52 @@ abstract class ProviderBase {
         return $content;
     }
 
+
+    /**
+     * Execute and returns a request
+     *
+     * @param string         $url
+     * @param array          $pageParams
+     * @param array          $getParams
+     * @param boolean|string $post
+     * @param array          $headers
+     *
+     * @return string|false
+     */
     protected function getText($url, array $pageParams = null, array $getParams = array(), $post = false, array $headers = null)
     {
         return self::executeRequest($this->buildUrl($url, $pageParams, $getParams), $post, $headers);
     }
 
+
+    /**
+     * Execute and returns a json request
+     *
+     * @param string         $url
+     * @param array          $pageParams
+     * @param array          $getParams
+     * @param boolean|string $post
+     * @param array          $headers
+     *
+     * @return array|false
+     */
     protected function getJson($url, array $pageParams = null, array $getParams = array(), $post = false, array $headers = null)
     {
     	return json_decode(self::executeRequest($this->buildUrl($url, $pageParams, $getParams), $post, $headers), true);
     }
 
+
+    /**
+     * Execute and returns a jsonp request
+     *
+     * @param string         $url
+     * @param array          $pageParams
+     * @param array          $getParams
+     * @param boolean|string $post
+     * @param array          $headers
+     *
+     * @return array|false
+     */
     protected function getJsonp($url, array $pageParams = null, array $getParams = array(), $post = false, array $headers = null)
     {
     	preg_match("/^\w+\((.*)\)$/", self::executeRequest($this->buildUrl($url, $pageParams, $getParams), $post, $headers), $matches);
@@ -82,6 +134,14 @@ abstract class ProviderBase {
     	return json_decode($matches[1], true);
     }
 
+
+    /**
+     * Generates a valid url
+     *
+     * @param string $url
+     * @param array  $pageParams
+     * @param array  $getParams
+     */
     protected function buildUrl($url, array $pageParams = null, array $getParams = array())
     {
     	if ($pageParams) {
