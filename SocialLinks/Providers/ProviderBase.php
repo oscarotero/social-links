@@ -65,6 +65,11 @@ abstract class ProviderBase {
         return $content;
     }
 
+    protected function getText($url, array $pageParams = null, array $getParams = array(), $post = false, array $headers = null)
+    {
+        return self::executeRequest($this->buildUrl($url, $pageParams, $getParams), $post, $headers);
+    }
+
     protected function getJson($url, array $pageParams = null, array $getParams = array(), $post = false, array $headers = null)
     {
     	return json_decode(self::executeRequest($this->buildUrl($url, $pageParams, $getParams), $post, $headers), true);

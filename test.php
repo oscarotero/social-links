@@ -72,6 +72,8 @@ $data = empty($_GET) ? ['url' => null, 'title' => null, 'text' => null, 'image' 
 				'plus',
 				'pinterest',
 				'linkedin',
+				'meneame',
+				'cabozo',
 				'stumbleupon',
 			];
 			?>
