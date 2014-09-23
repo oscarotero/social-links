@@ -27,15 +27,6 @@ abstract class ProviderBase {
 
 
     /**
-     * Default shareApp for all classes extending this class
-     */
-    public function shareApp()
-    {
-        return null;
-    }
-
-
-    /**
      * Executes a request and return the response
      *
      * @param string         $url

@@ -2,14 +2,16 @@
 namespace SocialLinks\Providers;
 
 class Twitter extends ProviderBase implements ProviderInterface {
-    public function shareApp()
-    {
-        return $this->buildUrl('twitter://post', ['url', 'title' => 'text']);
-    }
-
     public function shareUrl()
     {
-        return $this->buildUrl('https://twitter.com/intent/tweet', ['url', 'title' => 'text']);
+        $data = $this->page->get(['title', 'twitterUser']);
+        $text = $data['title'];
+
+        if (!empty($data['twitterUser'])) {
+            $text .= 'via '.$data['twitterUser'];
+        }
+
+        return $this->buildUrl('https://twitter.com/intent/tweet', ['url'], ['text' => $text]);
     }
 
     public function shareCount()

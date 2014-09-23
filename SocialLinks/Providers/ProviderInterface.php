@@ -2,13 +2,6 @@
 namespace SocialLinks\Providers;
 
 interface ProviderInterface {
-	/**
-	 * Returns the share app url 
-	 *
-	 * @return string|null
-	 */
-    public function shareApp();
-
 
     /**
 	 * Returns the share url 

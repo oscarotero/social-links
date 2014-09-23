@@ -3,7 +3,7 @@ require __DIR__.'/SocialLinks/autoloader.php';
 
 use SocialLinks\Page;
 
-$data = empty($_GET) ? ['url' => null, 'title' => null, 'text' => null, 'image' => null] : $_GET;
+$data = empty($_GET) ? ['url' => null, 'title' => null, 'text' => null, 'image' => null, 'twitterUser' => null] : $_GET;
 ?>
 
 <!DOCTYPE html>
@@ -89,9 +89,6 @@ $data = empty($_GET) ? ['url' => null, 'title' => null, 'text' => null, 'image' 
 					<td>
 						<?php echo $provider->shareUrl ? "<a href='{$provider->shareUrl}'>Share</a>" : 'Cannot be shared'; ?>
 					</td>
-					<td>
-						<?php echo $provider->shareApp ? "<a href='{$provider->shareApp}'>Share in app</a>" : 'Cannot be shared in app'; ?>
-					</td>
 				</tr>
 			<?php endforeach ?>
 			</table>
@@ -110,6 +107,9 @@ $data = empty($_GET) ? ['url' => null, 'title' => null, 'text' => null, 'image' 
 			</label>
 			<label>
 				<strong>Image: </strong><input type="url" name="image" value="<?php echo $data['image']; ?>">
+			</label>
+			<label>
+				<strong>Twitter user: </strong><input type="text" name="twitterUser" value="<?php echo $data['twitterUser']; ?>">
 			</label>
 
 			<input type="submit" value="Send">

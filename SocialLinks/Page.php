@@ -7,7 +7,8 @@ class Page {
         'url' => null,
         'title' => null,
         'text' => null,
-        'image' => null
+        'image' => null,
+        'twitterUser' => null
     ];
 
     public function __construct(array $info)
