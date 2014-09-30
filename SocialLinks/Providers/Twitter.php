@@ -5,10 +5,14 @@ class Twitter extends ProviderBase implements ProviderInterface {
     public function shareUrl()
     {
         $data = $this->page->get(['title', 'twitterUser']);
-        $text = $data['title'];
+        $text = trim($data['title']);
 
-        if (!empty($data['twitterUser'])) {
-            $text .= 'via '.$data['twitterUser'];
+        if (!empty($data['twitterUser']) && (strpos($text, $data['twitterUser']) === false)) {
+            if (strrpos($text, '.', -1)) {
+                $text = substr($text, 0, -1);
+            }
+
+            $text .= ' via '.$data['twitterUser'];
         }
 
         return $this->buildUrl('https://twitter.com/intent/tweet', ['url'], ['text' => $text]);
