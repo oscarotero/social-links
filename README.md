@@ -19,6 +19,7 @@ $page = new Page([
 	'title' => 'Page title',
 	'text' => 'Extended page description',
 	'image' => 'http://mypage.com/image.png'
+	'twitterUser' => '@twitterUser'
 ]);
 
 //Use the properties to get the providers info, for example:
@@ -27,7 +28,6 @@ $facebookProvider = $page->facebook;
 //Each provide has the following info:
 $page->twitter->shareUrl; //The url to share this page  (returns null if is not available)
 $page->twitter->shareCount; //The number of the current shares (returns 0 if is not available)
-$page->twitter->shareApp; //A special scheme url to share the page using native apps (returns null if is not available)
 
 //Example
 $link = '<a href="%s">%s (%s)</a>';
@@ -45,5 +45,3 @@ Online demo
 -----------
 
 http://oscarotero.com/social-links/test.php
-
-You can use the plugin: https://github.com/eusonlito/jquery.applink to work with ```$page->twitter->shareApp```
