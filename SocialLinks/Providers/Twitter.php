@@ -5,7 +5,7 @@ class Twitter extends ProviderBase implements ProviderInterface {
     public function shareUrl()
     {
         $data = $this->page->get(['title', 'twitterUser']);
-        $text = trim($data['title']);
+        $text = isset($data['title']) ? trim($data['title']) : '';
 
         if (!empty($data['twitterUser']) && (strpos($text, $data['twitterUser']) === false)) {
             if (strrpos($text, '.', -1)) {
