@@ -38,8 +38,12 @@ printf($link, $page->plus->shareUrl, 'Share in Google Plus', $page->plus->shareC
 printf($link, $page->pinterest->shareUrl, 'Share in Pinterest', $page->pinterest->shareCount);
 printf($link, $page->linkedin->shareUrl, 'Share in Linkedin', $page->linkedin->shareCount);
 printf($link, $page->stumbleupon->shareUrl, 'Share StumbleUpon', $page->stumbleupon->shareCount);
-
 ```
+
+Usage in Symfony
+----------------
+
+There is a Symfony bundle available here: https://github.com/astina/AstinaSocialLinksBundle
 
 Online demo
 -----------

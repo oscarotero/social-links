@@ -133,14 +133,14 @@ abstract class ProviderBase {
      * @param array  $pageParams
      * @param array  $getParams
      */
-    protected function buildUrl($url, array $pageParams = null, array $getParams = array())
+    protected function buildUrl($url, array $pageParams = null, array $getParams = array(), $encoding = PHP_QUERY_RFC1738)
     {
     	if ($pageParams) {
     		$getParams += $this->page->get($pageParams);
     	}
 
     	if ($getParams) {
-    		return $url.'?'.http_build_query($getParams);
+    		return $url.'?'.http_build_query($getParams, null, ini_get('arg_separator.output'), $encoding);
     	}
 
     	return $url;

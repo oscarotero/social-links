@@ -5,13 +5,10 @@ class Email extends ProviderBase implements ProviderInterface {
     public function shareUrl()
     {
         $info = $this->page->get();
-        $title = $info['title'];
+        $subject = $info['title'] ?: $info['url'];
+        $body = $info['text']."\n".$info['url'];
 
-        if (!$title) {
-            $title = $info['url'];
-        }
-
-        return $this->buildUrl('mailto:', ['url' => 'body'], ['subject' => $title]);
+        return $this->buildUrl('mailto:', null, ['subject' => $subject, 'body' => $body], PHP_QUERY_RFC3986);
     }
 
     public function shareCount()
