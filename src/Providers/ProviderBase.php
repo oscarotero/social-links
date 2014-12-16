@@ -7,6 +7,11 @@ abstract class ProviderBase
 {
     protected $page;
 
+    /**
+     * Constructor.
+     *
+     * @param Page $page
+     */
     public function __construct(Page $page)
     {
         $this->page = $page;
