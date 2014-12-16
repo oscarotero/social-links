@@ -1,8 +1,9 @@
 <?php
 namespace SocialLinks\Providers;
 
-class Meneame extends ProviderBase implements ProviderInterface {
-	protected $domain = 'http://meneame.net';
+class Meneame extends ProviderBase implements ProviderInterface
+{
+    protected $domain = 'http://meneame.net';
 
     /**
      * {@inheritDoc}
@@ -17,12 +18,12 @@ class Meneame extends ProviderBase implements ProviderInterface {
      */
     public function shareCount()
     {
-    	$result = $this->getText("{$this->domain}/api/url.php", ['url']);
-    	$result = explode(' ', $result);
+        $result = $this->getText("{$this->domain}/api/url.php", ['url']);
+        $result = explode(' ', $result);
 
-    	if (isset($result[0]) && $result[0] === 'OK') {
-    		return intval($result[2]);
-    	}
+        if (isset($result[0]) && $result[0] === 'OK') {
+            return intval($result[2]);
+        }
 
         return 0;
     }

@@ -1,7 +1,8 @@
 <?php
 namespace SocialLinks\Providers;
 
-class Pinterest extends ProviderBase implements ProviderInterface {
+class Pinterest extends ProviderBase implements ProviderInterface
+{
     /**
      * {@inheritDoc}
      */
@@ -15,7 +16,7 @@ class Pinterest extends ProviderBase implements ProviderInterface {
      */
     public function shareCount()
     {
-    	$count = $this->getJsonp('https://api.pinterest.com/v1/urls/count.json', ['url']);
+        $count = $this->getJsonp('https://api.pinterest.com/v1/urls/count.json', ['url']);
 
         return isset($count['count']) ? intval($count['count']) : 0;
     }

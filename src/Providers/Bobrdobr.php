@@ -7,29 +7,28 @@ namespace SocialLinks\Providers;
  */
 class Bobrdobr extends ProviderBase implements ProviderInterface
 {
-
-	/**
+    /**
      * {@inheritDoc}
      */
-	public function shareUrl()
-	{
-		return $this->buildUrl(
-			'http://bobrdobr.ru/addext.html',
-			[
-				'url',
-				'title',
-				'text' => 'desc',
-			]
-		);
-	}
+    public function shareUrl()
+    {
+        return $this->buildUrl(
+            'http://bobrdobr.ru/addext.html',
+            [
+                'url',
+                'title',
+                'text' => 'desc',
+            ]
+        );
+    }
 
-	/**
+    /**
      * Not supported
      *
      * {@inheritDoc}
      */
-	public function shareCount()
-	{
-		return 0;
-	}
+    public function shareCount()
+    {
+        return 0;
+    }
 }

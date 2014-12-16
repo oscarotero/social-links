@@ -1,14 +1,15 @@
 <?php
 namespace SocialLinks;
 
-class Page {
+class Page
+{
     protected $providers = [];
     protected $info = [
         'url' => null,
         'title' => null,
         'text' => null,
         'image' => null,
-        'twitterUser' => null
+        'twitterUser' => null,
     ];
 
     /**
@@ -49,7 +50,6 @@ class Page {
         }
 
         throw new \Exception("The provider $key does not exists");
-        
     }
 
     /**
@@ -65,7 +65,7 @@ class Page {
     /**
      * Gets some page info
      *
-     * @param array|null Array with the page fields to return as $name  => $rename. Set null to return all info
+     * @param array|null Array with the page fields to return as $name => $rename. Set null to return all info
      *
      * @return array
      */

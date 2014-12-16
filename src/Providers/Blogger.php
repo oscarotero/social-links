@@ -3,29 +3,27 @@
 
 namespace SocialLinks\Providers;
 
-
 class Blogger extends ProviderBase implements ProviderInterface
 {
-
-	/**
+    /**
      * {@inheritDoc}
      */
-	public function shareUrl()
-	{
-		return $this->buildUrl('https://www.blogger.com/blog-this.g',
-			[
-				'url' => 'u',
-				'title' => 'n',
-			]);
-	}
+    public function shareUrl()
+    {
+        return $this->buildUrl('https://www.blogger.com/blog-this.g',
+            [
+                'url' => 'u',
+                'title' => 'n',
+            ]);
+    }
 
-	/**
+    /**
      * Not supported
      *
      * {@inheritDoc}
      */
-	public function shareCount()
-	{
-		return 0;
-	}
+    public function shareCount()
+    {
+        return 0;
+    }
 }

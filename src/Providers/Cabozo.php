@@ -5,7 +5,8 @@ namespace SocialLinks\Providers;
  * Cabozo is a galician social network
  */
 
-class Cabozo extends ProviderBase implements ProviderInterface {
+class Cabozo extends ProviderBase implements ProviderInterface
+{
     /**
      * {@inheritDoc}
      */
@@ -21,6 +22,6 @@ class Cabozo extends ProviderBase implements ProviderInterface {
      */
     public function shareCount()
     {
-    	return 0;
+        return 0;
     }
 }

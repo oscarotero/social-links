@@ -1,7 +1,8 @@
 <?php
 namespace SocialLinks\Providers;
 
-class Email extends ProviderBase implements ProviderInterface {
+class Email extends ProviderBase implements ProviderInterface
+{
     /**
      * {@inheritDoc}
      */

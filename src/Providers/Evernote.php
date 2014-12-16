@@ -8,26 +8,26 @@ namespace SocialLinks\Providers;
  */
 class Evernote extends ProviderBase implements ProviderInterface
 {
-	/**
+    /**
      * {@inheritDoc}
      */
-	public function shareUrl()
-	{
-		return $this->buildUrl('https://www.evernote.com/clip.action',
-			[
-				'url',
-				'title',
-				'text' => 'body'
-			]);
-	}
+    public function shareUrl()
+    {
+        return $this->buildUrl('https://www.evernote.com/clip.action',
+            [
+                'url',
+                'title',
+                'text' => 'body'
+            ]);
+    }
 
-	/**
-	 * Not supported
-	 *
+    /**
+     * Not supported
+     *
      * {@inheritDoc}
      */
-	public function shareCount()
-	{
-		return 0;
-	}
+    public function shareCount()
+    {
+        return 0;
+    }
 }

@@ -1,7 +1,8 @@
 <?php
 namespace SocialLinks\Providers;
 
-class Linkedin extends ProviderBase implements ProviderInterface {
+class Linkedin extends ProviderBase implements ProviderInterface
+{
     /**
      * {@inheritDoc}
      */
@@ -15,7 +16,7 @@ class Linkedin extends ProviderBase implements ProviderInterface {
      */
     public function shareCount()
     {
-    	$count = $this->getJson('https://www.linkedin.com/countserv/count/share', ['url'], ['format' => 'json']);
+        $count = $this->getJson('https://www.linkedin.com/countserv/count/share', ['url'], ['format' => 'json']);
 
         return isset($count['count']) ? intval($count['count']) : 0;
     }

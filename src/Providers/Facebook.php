@@ -1,7 +1,8 @@
 <?php
 namespace SocialLinks\Providers;
 
-class Facebook extends ProviderBase implements ProviderInterface {
+class Facebook extends ProviderBase implements ProviderInterface
+{
     /**
      * {@inheritDoc}
      */
@@ -21,7 +22,7 @@ class Facebook extends ProviderBase implements ProviderInterface {
      */
     public function shareCount()
     {
-    	$count = $this->getJson('https://api.facebook.com/restserver.php', [
+        $count = $this->getJson('https://api.facebook.com/restserver.php', [
             'url' => 'urls[0]'
         ], ['method' => 'links.getStats', 'format' => 'json']);
 

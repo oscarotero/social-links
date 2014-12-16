@@ -1,7 +1,8 @@
 <?php
 namespace SocialLinks\Providers;
 
-class Stumbleupon extends ProviderBase implements ProviderInterface {
+class Stumbleupon extends ProviderBase implements ProviderInterface
+{
     /**
      * {@inheritDoc}
      */
@@ -15,7 +16,7 @@ class Stumbleupon extends ProviderBase implements ProviderInterface {
      */
     public function shareCount()
     {
-    	$count = $this->getJson('http://www.stumbleupon.com/services/1.01/badge.getinfo', ['url']);
+        $count = $this->getJson('http://www.stumbleupon.com/services/1.01/badge.getinfo', ['url']);
 
         return isset($count['result']['views']) ? intval($count['result']['views']) : 0;
     }

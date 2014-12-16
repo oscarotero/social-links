@@ -3,14 +3,14 @@ namespace SocialLinks\Providers;
 
 use SocialLinks\Page;
 
-abstract class ProviderBase {
-	protected $page;
+abstract class ProviderBase
+{
+    protected $page;
 
-	public function __construct(Page $page)
-	{
-		$this->page = $page;
-	}
-
+    public function __construct(Page $page)
+    {
+        $this->page = $page;
+    }
 
     /**
      * Magic method to calculate and store the properties
@@ -23,7 +23,6 @@ abstract class ProviderBase {
                 return $this->$key = $this->$key();
         }
     }
-
 
     /**
      * Executes a request and return the response
@@ -49,19 +48,19 @@ abstract class ProviderBase {
             CURLOPT_SSL_VERIFYHOST => false,
             CURLOPT_ENCODING => '',
             CURLOPT_AUTOREFERER => true,
-            CURLOPT_USERAGENT => 'SocialLinks PHP Library'
+            CURLOPT_USERAGENT => 'SocialLinks PHP Library',
         ));
 
         if (!empty($post)) {
-        	curl_setopt($connection, CURLOPT_POST, true);
+            curl_setopt($connection, CURLOPT_POST, true);
 
-        	if (is_string($post)) {
-        		curl_setopt($connection, CURLOPT_POSTFIELDS, $post);
-        	}
+            if (is_string($post)) {
+                curl_setopt($connection, CURLOPT_POSTFIELDS, $post);
+            }
         }
 
         if (!empty($headers)) {
-        	curl_setopt($connection, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($connection, CURLOPT_HTTPHEADER, $headers);
         }
 
         $content = curl_exec($connection) ?: '';
@@ -70,7 +69,6 @@ abstract class ProviderBase {
 
         return $content;
     }
-
 
     /**
      * Execute and returns a request
@@ -88,7 +86,6 @@ abstract class ProviderBase {
         return self::executeRequest($this->buildUrl($url, $pageParams, $getParams), $post, $headers);
     }
 
-
     /**
      * Execute and returns a json request
      *
@@ -102,9 +99,8 @@ abstract class ProviderBase {
      */
     protected function getJson($url, array $pageParams = null, array $getParams = array(), $post = false, array $headers = null)
     {
-    	return json_decode(self::executeRequest($this->buildUrl($url, $pageParams, $getParams), $post, $headers), true);
+        return json_decode(self::executeRequest($this->buildUrl($url, $pageParams, $getParams), $post, $headers), true);
     }
-
 
     /**
      * Execute and returns a jsonp request
@@ -119,29 +115,28 @@ abstract class ProviderBase {
      */
     protected function getJsonp($url, array $pageParams = null, array $getParams = array(), $post = false, array $headers = null)
     {
-    	preg_match("/^\w+\((.*)\)$/", self::executeRequest($this->buildUrl($url, $pageParams, $getParams), $post, $headers), $matches);
+        preg_match("/^\w+\((.*)\)$/", self::executeRequest($this->buildUrl($url, $pageParams, $getParams), $post, $headers), $matches);
 
-    	return json_decode($matches[1], true);
+        return json_decode($matches[1], true);
     }
-
 
     /**
      * Generates a valid url
      *
      * @param string $url
-     * @param array $pageParams parameters to be taken from page fields as $paramName  => $paramNameInTheURL
-     * @param array $getParams extra parameters as $key => $value
+     * @param array  $pageParams parameters to be taken from page fields as $paramName  => $paramNameInTheURL
+     * @param array  $getParams  extra parameters as $key => $value
      */
     protected function buildUrl($url, array $pageParams = null, array $getParams = array(), $encoding = PHP_QUERY_RFC1738)
     {
-    	if ($pageParams) {
-    		$getParams += $this->page->get($pageParams);
-    	}
+        if ($pageParams) {
+            $getParams += $this->page->get($pageParams);
+        }
 
-    	if ($getParams) {
-    		return $url.'?'.http_build_query($getParams, null, ini_get('arg_separator.output'), $encoding);
-    	}
+        if ($getParams) {
+            return $url.'?'.http_build_query($getParams, null, ini_get('arg_separator.output'), $encoding);
+        }
 
-    	return $url;
+        return $url;
     }
 }

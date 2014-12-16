@@ -1,20 +1,19 @@
 <?php
 namespace SocialLinks\Providers;
 
-interface ProviderInterface {
-
+interface ProviderInterface
+{
     /**
-	 * Returns the share url 
-	 *
-	 * @return string|null
-	 */
+     * Returns the share url
+     *
+     * @return string|null
+     */
     public function shareUrl();
 
-
     /**
-	 * Returns the share count 
-	 *
-	 * @return integer|null
-	 */
+     * Returns the share count
+     *
+     * @return integer|null
+     */
     public function shareCount();
 }
