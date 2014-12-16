@@ -1,5 +1,5 @@
 <?php
-require __DIR__.'/SocialLinks/autoloader.php';
+require dirname(__DIR__).'/src/autoloader.php';
 
 use SocialLinks\Page;
 
@@ -20,7 +20,7 @@ $data = empty($_GET) ? ['url' => null, 'title' => null, 'text' => null, 'image' 
 				max-width: 600px;
 				margin: 0 auto;
 				padding: 20px;
-				font-family: sans-serif;
+				font-family: Arial, sans-serif;
 			}
 			table {
 				text-align: left;

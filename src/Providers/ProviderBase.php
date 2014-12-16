@@ -18,7 +18,6 @@ abstract class ProviderBase {
     public function __get($key)
     {
         switch ($key) {
-            case 'shareApp':
             case 'shareUrl':
             case 'shareCount':
                 return $this->$key = $this->$key();

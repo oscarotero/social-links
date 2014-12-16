@@ -48,4 +48,17 @@ There is a Symfony bundle available here: https://github.com/astina/AstinaSocial
 Online demo
 -----------
 
-http://oscarotero.com/social-links/test.php
+http://oscarotero.com/social-links/demo/index.php
+
+Contributions
+-------------
+
+* All code must be PSR-1 and PSR-2 compilance. You can use this [php cs-fixer](http://cs.sensiolabs.org/)
+* The providers class names must be in lowercase starting by uppercase. For example `Linkedin` instead `LinkedIn`.
+* Add the new providers to demo/index.php
+
+Thanks to:
+
+* **peric** For adding Email provider and some fixes
+* **eusonlito** For some fixes
+* **perk** for adding some new providers

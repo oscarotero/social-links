@@ -8,10 +8,8 @@ class Blogger extends ProviderBase implements ProviderInterface
 {
 
 	/**
-	 * Returns the share url
-	 *
-	 * @return string|null
-	 */
+     * {@inheritDoc}
+     */
 	public function shareUrl()
 	{
 		return $this->buildUrl('https://www.blogger.com/blog-this.g',
@@ -22,10 +20,10 @@ class Blogger extends ProviderBase implements ProviderInterface
 	}
 
 	/**
-	 * Not supported
-	 *
-	 * @return integer
-	 */
+     * Not supported
+     *
+     * {@inheritDoc}
+     */
 	public function shareCount()
 	{
 		return 0;

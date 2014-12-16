@@ -2,6 +2,9 @@
 namespace SocialLinks\Providers;
 
 class Facebook extends ProviderBase implements ProviderInterface {
+    /**
+     * {@inheritDoc}
+     */
     public function shareUrl()
     {
         return $this->buildUrl(
@@ -13,6 +16,9 @@ class Facebook extends ProviderBase implements ProviderInterface {
             ], ['s' => 100]);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function shareCount()
     {
     	$count = $this->getJson('https://api.facebook.com/restserver.php', [

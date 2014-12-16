@@ -5,14 +5,12 @@ namespace SocialLinks\Providers;
 /**
  * BobrDobr is a Russian clone of delicio.us
  */
-class BobrDobr extends ProviderBase implements ProviderInterface
+class Bobrdobr extends ProviderBase implements ProviderInterface
 {
 
 	/**
-	 * Returns the share url
-	 *
-	 * @return string|null
-	 */
+     * {@inheritDoc}
+     */
 	public function shareUrl()
 	{
 		return $this->buildUrl(
@@ -26,10 +24,10 @@ class BobrDobr extends ProviderBase implements ProviderInterface
 	}
 
 	/**
-	 * Not supported
-	 *
-	 * @return integer
-	 */
+     * Not supported
+     *
+     * {@inheritDoc}
+     */
 	public function shareCount()
 	{
 		return 0;

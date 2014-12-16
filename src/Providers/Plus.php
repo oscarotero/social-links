@@ -2,11 +2,17 @@
 namespace SocialLinks\Providers;
 
 class Plus extends ProviderBase implements ProviderInterface {
+    /**
+     * {@inheritDoc}
+     */
     public function shareUrl()
     {
         return $this->buildUrl('https://plus.google.com/share', ['url']);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function shareCount()
     {
         $url = $this->page->getUrl();

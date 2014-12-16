@@ -3,13 +3,11 @@
 namespace SocialLinks\Providers;
 
 
-class LiveJournal extends ProviderBase implements ProviderInterface
+class Livejournal extends ProviderBase implements ProviderInterface
 {
 	/**
-	 * Returns the share url
-	 *
-	 * @return string|null
-	 */
+     * {@inheritDoc}
+     */
 	public function shareUrl()
 	{
 		$titleArray = $this->page->get(['title']);
@@ -34,8 +32,8 @@ class LiveJournal extends ProviderBase implements ProviderInterface
 	/**
 	 * Not supported
 	 *
-	 * @return integer
-	 */
+     * {@inheritDoc}
+     */
 	public function shareCount()
 	{
 		return 0;

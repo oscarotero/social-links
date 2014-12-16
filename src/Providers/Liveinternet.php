@@ -3,14 +3,12 @@
 namespace SocialLinks\Providers;
 
 
-class LiveInternet extends ProviderBase implements ProviderInterface
+class Liveinternet extends ProviderBase implements ProviderInterface
 {
 
 	/**
-	 * Returns the share url
-	 *
-	 * @return string|null
-	 */
+     * {@inheritDoc}
+     */
 	public function shareUrl()
 	{
 		//http://www.liveinternet.ru/journal_post.php?
@@ -30,8 +28,8 @@ class LiveInternet extends ProviderBase implements ProviderInterface
 	/**
 	 * Not supported
 	 *
-	 * @return integer
-	 */
+     * {@inheritDoc}
+     */
 	public function shareCount()
 	{
 		return 0;

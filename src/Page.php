@@ -11,6 +11,11 @@ class Page {
         'twitterUser' => null
     ];
 
+    /**
+     * Constructor
+     *
+     * @param array $info The page info. Only url, title, text, image and twitterUser fields are available
+     */
     public function __construct(array $info)
     {
         if (array_diff_key($info, $this->info)) {
@@ -20,6 +25,15 @@ class Page {
         $this->info = $info;
     }
 
+    /**
+     * Magic method to instantiate and return providers in lazy mode
+     *
+     * @param string $key The provider name
+     *
+     * @throws Exception if the provider does not exists
+     *
+     * @return Providers\ProviderInterface
+     */
     public function __get($key)
     {
         $key = strtolower($key);
@@ -33,13 +47,28 @@ class Page {
         if (class_exists($class)) {
             return $this->providers[$key] = new $class($this);
         }
+
+        throw new \Exception("The provider $key does not exists");
+        
     }
 
+    /**
+     * Gets the page url
+     *
+     * @return string
+     */
     public function getUrl()
     {
         return $this->info['url'];
     }
 
+    /**
+     * Gets some page info
+     *
+     * @param array|null Array with the page fields to return as $name  => $rename. Set null to return all info
+     *
+     * @return array
+     */
     public function get(array $info = null)
     {
         if ($info === null) {

@@ -10,10 +10,8 @@ class Odnoklassniki extends ProviderBase implements ProviderInterface
 	protected $countField = 'share_ok';
 
 	/**
-	 * Returns the share url
-	 *
-	 * @return string|null
-	 */
+     * {@inheritDoc}
+     */
 	public function shareUrl()
 	{
 		return $this->buildUrl('http://www.odnoklassniki.ru/dk',
@@ -29,10 +27,8 @@ class Odnoklassniki extends ProviderBase implements ProviderInterface
 	}
 
 	/**
-	 * Returns the share count
-	 *
-	 * @return integer|null
-	 */
+     * {@inheritDoc}
+     */
 	public function shareCount()
 	{
 		/**
@@ -48,7 +44,7 @@ class Odnoklassniki extends ProviderBase implements ProviderInterface
 		// URLs starting with https:// seem to always return 0, so let's remove scheme from URL
 		$urlParts = parse_url($this->page->getUrl());
 		if (isset($urlParts['host'])) {
-			$url = $urlParts['host'] . $urlParts['path'];
+			$url = $urlParts['host'] . (isset($urlParts['path']) ? $urlParts['path'] : '');
 		} else {
 			$url = $this->page->getUrl(); //fallback to original url
 		}

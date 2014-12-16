@@ -5,14 +5,12 @@ namespace SocialLinks\Providers;
 /**
  * VK.con or Vkontakte is the most popular social network in Russia and some other countries
  */
-class VK extends ProviderBase implements ProviderInterface
+class Vk extends ProviderBase implements ProviderInterface
 {
 
 	/**
-	 * Returns the share url
-	 *
-	 * @return string|null
-	 */
+     * {@inheritDoc}
+     */
 	public function shareUrl()
 	{
 		return $this->buildUrl('http://vk.com/share.php', [
@@ -23,10 +21,8 @@ class VK extends ProviderBase implements ProviderInterface
 	}
 
 	/**
-	 * Returns the share count
-	 *
-	 * @return integer|null
-	 */
+     * {@inheritDoc}
+     */
 	public function shareCount()
 	{
 		// This returns something like:

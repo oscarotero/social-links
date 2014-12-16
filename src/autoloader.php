@@ -5,7 +5,8 @@ function SocialLinksLoader($className)
         return;
     }
 
-    $fileName = dirname(__DIR__).'/';
+    $className = substr($className, 12);
+    $fileName = __DIR__.'/';
 
     if ($lastNsPos = strripos($className, '\\')) {
         $namespace = substr($className, 0, $lastNsPos);
