@@ -1,7 +1,7 @@
 SocialLinks
 ===========
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/oscarotero/social-links/badges/quality-score.png?s=297eaeb181f11caae68c961095ec67c76a57d4fa)](https://scrutinizer-ci.com/g/oscarotero/social-links/)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/oscarotero/social-links/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/oscarotero/social-links/?branch=master)
 
 Created by Oscar Otero <http://oscarotero.com> <oom@oscarotero.com>
 
@@ -25,7 +25,7 @@ $page = new Page([
 //Use the properties to get the providers info, for example:
 $facebookProvider = $page->facebook;
 
-//Each provide has the following info:
+//Each provider has the following info:
 $page->twitter->shareUrl; //The url to share this page  (returns null if is not available)
 $page->twitter->shareCount; //The number of the current shares (returns 0 if is not available)
 
@@ -59,6 +59,6 @@ Contributions
 
 Thanks to:
 
-* **peric** For adding Email provider and some fixes
-* **eusonlito** For some fixes
-* **perk** for adding some new providers
+* [peric](https://github.com/peric) For adding Email provider and some fixes
+* [eusonlito](https://github.com/eusonlito) For some fixes
+* [perk](https://github.com/perk11) for adding new providers
