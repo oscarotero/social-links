@@ -130,8 +130,8 @@ abstract class ProviderBase {
      * Generates a valid url
      *
      * @param string $url
-     * @param array  $pageParams
-     * @param array  $getParams
+     * @param array $pageParams parameters to be taken from page fields as $paramName  => $paramNameInTheURL
+     * @param array $getParams extra parameters as $key => $value
      */
     protected function buildUrl($url, array $pageParams = null, array $getParams = array(), $encoding = PHP_QUERY_RFC1738)
     {
