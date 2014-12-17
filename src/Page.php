@@ -23,7 +23,7 @@ class Page
             throw new \Exception("Only the following fields are available:".implode(',', array_keys($this->info)));
         }
 
-        $this->info = $info;
+        $this->info = $info + $this->info;
     }
 
     /**
