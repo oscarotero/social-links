@@ -10,7 +10,12 @@ class Email extends ProviderBase implements ProviderInterface
     {
         $info = $this->page->get();
         $subject = $info['title'] ?: $info['url'];
-        $body = $info['text']."\n".$info['url'];
+        if (isset($info['text'])) {
+            $body = $info['text']."\n";
+        } else {
+            $body = '';
+        }
+        $body .= $info['url'];
 
         return $this->buildUrl('mailto:', null, ['subject' => $subject, 'body' => $body], PHP_QUERY_RFC3986);
     }
