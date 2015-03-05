@@ -75,7 +75,7 @@ class Page
             return $this->info;
         }
 
-        $data = [];
+        $data = array();
 
         foreach ($info as $name => $rename) {
             if (is_int($name)) {
