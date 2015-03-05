@@ -12,7 +12,7 @@ class Stumbleupon extends ProviderBase implements ProviderInterface
             'https://www.stumbleupon.com/submit',
             array(
                 'url',
-                'title'
+                'title',
             )
         );
     }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace SocialLinks\Providers;
 
 class Blogger extends ProviderBase implements ProviderInterface
@@ -20,7 +19,7 @@ class Blogger extends ProviderBase implements ProviderInterface
     }
 
     /**
-     * Not supported
+     * Not supported.
      *
      * {@inheritDoc}
      */

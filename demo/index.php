@@ -63,30 +63,30 @@ $data = empty($_GET) ? ['url' => null, 'title' => null, 'text' => null, 'image' 
 		<h1>Social links</h1>
 
 		<?php if ($data['url']): ?>
-			
+
 			<?php
-			$page = new Page($data);
-			$providers = [
-				'twitter',
-				'facebook',
-				'plus',
-				'pinterest',
-				'linkedin',
-				'meneame',
-				'chuza',
-				'cabozo',
-				'stumbleupon',
-				'email',
-				'blogger',
-				'bobrdobr',
-				'evernote',
-				'liveinternet',
-				'livejournal',
-				'mailru',
-				'odnoklassniki',
-				'vk',
-			];
-			?>
+            $page = new Page($data);
+            $providers = [
+                'twitter',
+                'facebook',
+                'plus',
+                'pinterest',
+                'linkedin',
+                'meneame',
+                'chuza',
+                'cabozo',
+                'stumbleupon',
+                'email',
+                'blogger',
+                'bobrdobr',
+                'evernote',
+                'liveinternet',
+                'livejournal',
+                'mailru',
+                'odnoklassniki',
+                'vk',
+            ];
+            ?>
 
 			<table>
 			<?php foreach ($providers as $name): ?>
@@ -101,7 +101,7 @@ $data = empty($_GET) ? ['url' => null, 'title' => null, 'text' => null, 'image' 
 				</tr>
 			<?php endforeach ?>
 			</table>
-		
+
 		<?php endif; ?>
 
 		<form>

@@ -13,7 +13,7 @@ class Linkedin extends ProviderBase implements ProviderInterface
             array(
                 'url',
                 'title',
-                'text' => 'summary'
+                'text' => 'summary',
             ),
             array('mini' => true)
         );

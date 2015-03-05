@@ -4,14 +4,14 @@ namespace SocialLinks\Providers;
 interface ProviderInterface
 {
     /**
-     * Returns the share url
+     * Returns the share url.
      *
      * @return string|null
      */
     public function shareUrl();
 
     /**
-     * Returns the share count
+     * Returns the share count.
      *
      * @return integer|null
      */

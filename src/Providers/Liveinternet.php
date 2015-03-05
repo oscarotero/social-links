@@ -22,7 +22,7 @@ class Liveinternet extends ProviderBase implements ProviderInterface
     }
 
     /**
-     * Not supported
+     * Not supported.
      *
      * {@inheritDoc}
      */

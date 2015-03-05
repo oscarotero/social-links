@@ -1,10 +1,9 @@
 <?php
 
-
 namespace SocialLinks\Providers;
 
 /**
- * Create an Evernote Clip of a page
+ * Create an Evernote Clip of a page.
  */
 class Evernote extends ProviderBase implements ProviderInterface
 {
@@ -18,13 +17,13 @@ class Evernote extends ProviderBase implements ProviderInterface
             array(
                 'url',
                 'title',
-                'text' => 'body'
+                'text' => 'body',
             )
         );
     }
 
     /**
-     * Not supported
+     * Not supported.
      *
      * {@inheritDoc}
      */

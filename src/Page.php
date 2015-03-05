@@ -13,7 +13,7 @@ class Page
     );
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param array $info The page info. Only url, title, text, image and twitterUser fields are available
      */
@@ -27,7 +27,7 @@ class Page
     }
 
     /**
-     * Magic method to instantiate and return providers in lazy mode
+     * Magic method to instantiate and return providers in lazy mode.
      *
      * @param string $key The provider name
      *
@@ -53,7 +53,7 @@ class Page
     }
 
     /**
-     * Gets the page url
+     * Gets the page url.
      *
      * @return string
      */
@@ -63,7 +63,7 @@ class Page
     }
 
     /**
-     * Gets some page info
+     * Gets some page info.
      *
      * @param array|null Array with the page fields to return as $name => $rename. Set null to return all info
      *

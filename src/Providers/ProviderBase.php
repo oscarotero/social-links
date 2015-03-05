@@ -18,7 +18,7 @@ abstract class ProviderBase
     }
 
     /**
-     * Magic method to calculate and store the properties
+     * Magic method to calculate and store the properties.
      */
     public function __get($key)
     {
@@ -30,7 +30,7 @@ abstract class ProviderBase
     }
 
     /**
-     * Executes a request and return the response
+     * Executes a request and return the response.
      *
      * @param string         $url
      * @param boolean|string $post
@@ -76,7 +76,7 @@ abstract class ProviderBase
     }
 
     /**
-     * Execute and returns a request
+     * Execute and returns a request.
      *
      * @param string         $url
      * @param array          $pageParams
@@ -92,7 +92,7 @@ abstract class ProviderBase
     }
 
     /**
-     * Execute and returns a json request
+     * Execute and returns a json request.
      *
      * @param string         $url
      * @param array          $pageParams
@@ -108,7 +108,7 @@ abstract class ProviderBase
     }
 
     /**
-     * Execute and returns a jsonp request
+     * Execute and returns a jsonp request.
      *
      * @param string         $url
      * @param array          $pageParams
@@ -126,7 +126,7 @@ abstract class ProviderBase
     }
 
     /**
-     * Generates a valid url
+     * Generates a valid url.
      *
      * @param string $url
      * @param array  $pageParams parameters to be taken from page fields as $paramName  => $paramNameInTheURL

@@ -25,7 +25,7 @@ class Livejournal extends ProviderBase implements ProviderInterface
     }
 
     /**
-     * Not supported
+     * Not supported.
      *
      * {@inheritDoc}
      */

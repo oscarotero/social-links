@@ -3,7 +3,7 @@
 namespace SocialLinks\Providers;
 
 /**
- * MailRu and Odnoklassniki are different social networks, but they share an owner and parts of API
+ * MailRu and Odnoklassniki are different social networks, but they share an owner and parts of API.
  */
 class Mailru extends Odnoklassniki
 {

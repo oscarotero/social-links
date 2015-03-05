@@ -14,10 +14,10 @@ class Facebook extends ProviderBase implements ProviderInterface
                 'url' => 'p[url]',
                 'title' => 'p[title]',
                 'text' => 'p[summary]',
-                'image' => 'p[images][0]'
+                'image' => 'p[images][0]',
             ),
             array(
-                's' => 100
+                's' => 100,
             )
         );
     }
@@ -30,11 +30,11 @@ class Facebook extends ProviderBase implements ProviderInterface
         $count = $this->getJson(
             'https://api.facebook.com/restserver.php',
             array(
-                'url' => 'urls[0]'
+                'url' => 'urls[0]',
             ),
             array(
                 'method' => 'links.getStats',
-                'format' => 'json'
+                'format' => 'json',
             )
         );
 

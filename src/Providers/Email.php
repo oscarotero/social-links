@@ -22,14 +22,14 @@ class Email extends ProviderBase implements ProviderInterface
             null,
             array(
                 'subject' => $subject,
-                'body' => $body
+                'body' => $body,
             ),
             PHP_QUERY_RFC3986
         );
     }
 
     /**
-     * Not supported
+     * Not supported.
      *
      * {@inheritDoc}
      */

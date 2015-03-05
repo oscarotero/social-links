@@ -3,7 +3,7 @@
 namespace SocialLinks\Providers;
 
 /**
- * BobrDobr is a Russian clone of delicio.us
+ * BobrDobr is a Russian clone of delicio.us.
  */
 class Bobrdobr extends ProviderBase implements ProviderInterface
 {
@@ -23,7 +23,7 @@ class Bobrdobr extends ProviderBase implements ProviderInterface
     }
 
     /**
-     * Not supported
+     * Not supported.
      *
      * {@inheritDoc}
      */

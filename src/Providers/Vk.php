@@ -3,7 +3,7 @@
 namespace SocialLinks\Providers;
 
 /**
- * VK.con or Vkontakte is the most popular social network in Russia and some other countries
+ * VK.con or Vkontakte is the most popular social network in Russia and some other countries.
  */
 class Vk extends ProviderBase implements ProviderInterface
 {
@@ -16,7 +16,7 @@ class Vk extends ProviderBase implements ProviderInterface
             array(
                 'url',
                 'text' => 'description',
-                'image'
+                'image',
             )
         );
     }

@@ -13,7 +13,7 @@ class Pinterest extends ProviderBase implements ProviderInterface
             array(
                 'url',
                 'title' => 'description',
-                'media' => 'image'
+                'media' => 'image',
             )
         );
     }

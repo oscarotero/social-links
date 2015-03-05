@@ -3,7 +3,7 @@
 namespace SocialLinks\Providers;
 
 /**
- * Odnoklassniki is the second most popular Russian social network
+ * Odnoklassniki is the second most popular Russian social network.
  */
 class Odnoklassniki extends ProviderBase implements ProviderInterface
 {
@@ -32,7 +32,7 @@ class Odnoklassniki extends ProviderBase implements ProviderInterface
      * {
      *  "share_mm": 45037, // # of shares in my.mail.ru
      *  "share_ok": 14617 // # of shares in Odnoklassniki
-     * }
+     * }.
      *
      * {@inheritDoc}
      */
