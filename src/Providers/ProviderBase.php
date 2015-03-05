@@ -123,7 +123,7 @@ abstract class ProviderBase
      */
     protected function getJsonp($url, array $pageParams = null, array $getParams = array(), $post = false, array $headers = null)
     {
-        preg_match("/^\w+\((.*)\)$/", self::executeRequest($this->buildUrl($url, $pageParams, $getParams), $post, $headers), $matches);
+        preg_match("/^\w+\((.*)\)$/", static::executeRequest($this->buildUrl($url, $pageParams, $getParams), $post, $headers), $matches);
 
         return json_decode($matches[1], true);
     }
@@ -131,9 +131,10 @@ abstract class ProviderBase
     /**
      * Generates a valid url.
      *
-     * @param string $url
-     * @param array  $pageParams parameters to be taken from page fields as $paramName  => $paramNameInTheURL
-     * @param array  $getParams  extra parameters as $key => $value
+     * @param string  $url
+     * @param array   $pageParams parameters to be taken from page fields as $paramName  => $paramNameInTheURL
+     * @param array   $getParams  extra parameters as $key => $value
+     * @param integer $encoding   Type of encoding used. It can be static::RFC3986 or static::RFC1738
      */
     protected function buildUrl($url, array $pageParams = null, array $getParams = array(), $encoding = self::RFC1738)
     {
@@ -145,7 +146,7 @@ abstract class ProviderBase
             return $url;
         }
 
-        if ($encoding === self::RFC1738) {
+        if ($encoding === static::RFC1738) {
             return $url.'?'.http_build_query($getParams);
         }
 
