@@ -2,6 +2,7 @@ SocialLinks
 ===========
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/oscarotero/social-links/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/oscarotero/social-links/?branch=master)
+[![Build Status](https://travis-ci.org/oscarotero/social-links.svg?branch=master)](https://travis-ci.org/oscarotero/social-links)
 
 Created by Oscar Otero <http://oscarotero.com> <oom@oscarotero.com>
 
