@@ -7,6 +7,9 @@ abstract class ProviderBase
 {
     protected $page;
 
+    const RFC1738 = 1;
+    const RFC3986 = 2;
+
     /**
      * Constructor.
      *
@@ -132,16 +135,26 @@ abstract class ProviderBase
      * @param array  $pageParams parameters to be taken from page fields as $paramName  => $paramNameInTheURL
      * @param array  $getParams  extra parameters as $key => $value
      */
-    protected function buildUrl($url, array $pageParams = null, array $getParams = array(), $encoding = PHP_QUERY_RFC1738)
+    protected function buildUrl($url, array $pageParams = null, array $getParams = array(), $encoding = self::RFC1738)
     {
         if ($pageParams) {
             $getParams += $this->page->get($pageParams);
         }
 
-        if ($getParams) {
-            return $url.'?'.http_build_query($getParams, null, ini_get('arg_separator.output'), $encoding);
+        if (empty($getParams)) {
+            return $url;
         }
 
-        return $url;
+        if ($encoding === self::RFC1738) {
+            return $url.'?'.http_build_query($getParams);
+        }
+
+        $get = array();
+
+        foreach ($getParams as $name => $value) {
+            $get[] = $name.'='.rawurlencode($value);
+        }
+
+        return $url.'?'.implode(ini_get('arg_separator.output'), $get);
     }
 }

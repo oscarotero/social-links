@@ -24,7 +24,7 @@ class Email extends ProviderBase implements ProviderInterface
                 'subject' => $subject,
                 'body' => $body,
             ),
-            PHP_QUERY_RFC3986
+            static::RFC3986
         );
     }
 

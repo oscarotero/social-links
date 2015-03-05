@@ -9,12 +9,14 @@ class Livejournal extends ProviderBase implements ProviderInterface
      */
     public function shareUrl()
     {
-        $titleArray = $this->page->get(['title']);
+        $titleArray = $this->page->get(array('title'));
+
         if (isset($titleArray['title'])) {
             $title = $titleArray['title'];
         } else {
             $title = $this->page->getUrl();
         }
+
         $postText = '<a href="'.$this->page->getUrl().'">'.$title.'</a>';
 
         return $this->buildUrl(
