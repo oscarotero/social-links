@@ -12,7 +12,10 @@ class Cabozo extends ProviderBase implements ProviderInterface
      */
     public function shareUrl()
     {
-        return $this->buildUrl('http://www.cabozo.com/share.php', ['url']);
+        return $this->buildUrl(
+            'http://www.cabozo.com/share.php',
+            array('url')
+        );
     }
 
     /**

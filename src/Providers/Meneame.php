@@ -10,7 +10,10 @@ class Meneame extends ProviderBase implements ProviderInterface
      */
     public function shareUrl()
     {
-        return $this->buildUrl("{$this->domain}/submit.php", ['url']);
+        return $this->buildUrl(
+            "{$this->domain}/submit.php",
+            array('url')
+        );
     }
 
     /**
@@ -18,7 +21,11 @@ class Meneame extends ProviderBase implements ProviderInterface
      */
     public function shareCount()
     {
-        $result = $this->getText("{$this->domain}/api/url.php", ['url']);
+        $result = $this->getText(
+            "{$this->domain}/api/url.php",
+            array('url')
+        );
+
         $result = explode(' ', $result);
 
         if (isset($result[0]) && $result[0] === 'OK') {

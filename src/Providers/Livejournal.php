@@ -17,13 +17,10 @@ class Livejournal extends ProviderBase implements ProviderInterface
         }
         $postText = '<a href="'.$this->page->getUrl().'">'.$title.'</a>';
 
-        return $this->buildUrl('http://www.livejournal.com/update.bml',
-            [
-                'title' => 'subject',
-            ],
-            [
-                'event' => $postText,
-            ]
+        return $this->buildUrl(
+            'http://www.livejournal.com/update.bml',
+            array('title' => 'subject'),
+            array('event' => $postText)
         );
     }
 

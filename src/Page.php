@@ -3,14 +3,14 @@ namespace SocialLinks;
 
 class Page
 {
-    protected $providers = [];
-    protected $info = [
+    protected $providers = array();
+    protected $info = array(
         'url' => null,
         'title' => null,
         'text' => null,
         'image' => null,
         'twitterUser' => null,
-    ];
+    );
 
     /**
      * Constructor

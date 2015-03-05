@@ -13,12 +13,14 @@ class Evernote extends ProviderBase implements ProviderInterface
      */
     public function shareUrl()
     {
-        return $this->buildUrl('https://www.evernote.com/clip.action',
-            [
+        return $this->buildUrl(
+            'https://www.evernote.com/clip.action',
+            array(
                 'url',
                 'title',
                 'text' => 'body'
-            ]);
+            )
+        );
     }
 
     /**

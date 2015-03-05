@@ -15,14 +15,14 @@ class Odnoklassniki extends ProviderBase implements ProviderInterface
     public function shareUrl()
     {
         return $this->buildUrl('http://www.odnoklassniki.ru/dk',
-            [
+            array(
                 'description' => 'st.comments',
                 'url' => 'st._surl',
-            ],
-            [
+            ),
+            array(
                 'st.cmd' => 'addShare',
                 'st.s' => '1',
-            ]
+            )
         );
     }
 

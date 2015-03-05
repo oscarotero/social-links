@@ -8,7 +8,7 @@ class Twitter extends ProviderBase implements ProviderInterface
      */
     public function shareUrl()
     {
-        $data = $this->page->get(['title', 'twitterUser']);
+        $data = $this->page->get(array('title', 'twitterUser'));
         $text = isset($data['title']) ? trim($data['title']) : '';
 
         if (!empty($data['twitterUser']) && (strpos($text, $data['twitterUser']) === false)) {
@@ -19,7 +19,11 @@ class Twitter extends ProviderBase implements ProviderInterface
             $text .= ' via '.$data['twitterUser'];
         }
 
-        return $this->buildUrl('https://twitter.com/intent/tweet', ['url'], ['text' => $text]);
+        return $this->buildUrl(
+            'https://twitter.com/intent/tweet',
+            array('url'),
+            array('text' => $text)
+        );
     }
 
     /**
@@ -27,7 +31,10 @@ class Twitter extends ProviderBase implements ProviderInterface
      */
     public function shareCount()
     {
-        $count = $this->getJson('https://cdn.api.twitter.com/1/urls/count.json', ['url']);
+        $count = $this->getJson(
+            'https://cdn.api.twitter.com/1/urls/count.json',
+            array('url')
+        );
 
         return isset($count['count']) ? intval($count['count']) : 0;
     }

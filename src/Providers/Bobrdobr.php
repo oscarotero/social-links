@@ -14,11 +14,11 @@ class Bobrdobr extends ProviderBase implements ProviderInterface
     {
         return $this->buildUrl(
             'http://bobrdobr.ru/addext.html',
-            [
+            array(
                 'url',
                 'title',
                 'text' => 'desc',
-            ]
+            )
         );
     }
 

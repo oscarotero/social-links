@@ -8,7 +8,15 @@ class Linkedin extends ProviderBase implements ProviderInterface
      */
     public function shareUrl()
     {
-        return $this->buildUrl('https://www.linkedin.com/shareArticle', ['url', 'title', 'text' => 'summary'], ['mini' => true]);
+        return $this->buildUrl(
+            'https://www.linkedin.com/shareArticle',
+            array(
+                'url',
+                'title',
+                'text' => 'summary'
+            ),
+            array('mini' => true)
+        );
     }
 
     /**
@@ -16,7 +24,11 @@ class Linkedin extends ProviderBase implements ProviderInterface
      */
     public function shareCount()
     {
-        $count = $this->getJson('https://www.linkedin.com/countserv/count/share', ['url'], ['format' => 'json']);
+        $count = $this->getJson(
+            'https://www.linkedin.com/countserv/count/share',
+            array('url'),
+            array('format' => 'json')
+        );
 
         return isset($count['count']) ? intval($count['count']) : 0;
     }

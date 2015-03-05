@@ -12,11 +12,13 @@ class Vk extends ProviderBase implements ProviderInterface
      */
     public function shareUrl()
     {
-        return $this->buildUrl('http://vk.com/share.php', [
-            'url',
-            'text' => 'description',
-            'image'
-        ]);
+        return $this->buildUrl('http://vk.com/share.php',
+            array(
+                'url',
+                'text' => 'description',
+                'image'
+            )
+        );
     }
 
     /**
@@ -26,12 +28,20 @@ class Vk extends ProviderBase implements ProviderInterface
     {
         // This returns something like:
         // VK.Share.count(0, 59);
-        $countText = $this->getText('https://vk.com/share.php', ['url'], ['act' => 'count']);
+        $countText = $this->getText(
+            'https://vk.com/share.php',
+            array('url'),
+            array('act' => 'count')
+        );
+
         $counts = explode(',', $countText);
+
         if (!isset($counts[1])) {
             return 0;
         }
+
         $count = trim($counts[1]); // it's now "59);",
+
         return (int) $count;
     }
 }

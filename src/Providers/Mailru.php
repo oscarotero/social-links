@@ -15,12 +15,12 @@ class Mailru extends Odnoklassniki
     public function shareUrl()
     {
         return $this->buildUrl('http://connect.mail.ru/share',
-            [
+            array(
                 'url',
                 'title',
                 'text' => 'description',
                 'image' => 'imageurl',
-            ]
+            )
         );
     }
 }

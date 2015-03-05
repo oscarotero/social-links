@@ -13,13 +13,11 @@ class Liveinternet extends ProviderBase implements ProviderInterface
         //action=n_add&cnurl=Ссылка&
         //cntitle=Заголовок' target='_blank'>
         return $this->buildUrl('http://www.liveinternet.ru/journal_post.php',
-            [
+            array(
                 'url' => 'cnurl',
                 'title' => 'cntitle',
-            ],
-            [
-                'action' => 'n_add',
-            ]
+            ),
+            array('action' => 'n_add')
         );
     }
 
