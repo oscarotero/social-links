@@ -3,7 +3,7 @@ require dirname(__DIR__).'/src/autoloader.php';
 
 use SocialLinks\Page;
 
-$data = empty($_GET) ? ['url' => null, 'title' => null, 'text' => null, 'image' => null, 'twitterUser' => null] : $_GET;
+$data = empty($_GET) ? array('url' => null, 'title' => null, 'text' => null, 'image' => null, 'twitterUser' => null) : $_GET;
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +66,7 @@ $data = empty($_GET) ? ['url' => null, 'title' => null, 'text' => null, 'image' 
 
 			<?php
             $page = new Page($data);
-            $providers = [
+            $providers = array(
                 'twitter',
                 'facebook',
                 'plus',
@@ -85,7 +85,7 @@ $data = empty($_GET) ? ['url' => null, 'title' => null, 'text' => null, 'image' 
                 'mailru',
                 'odnoklassniki',
                 'vk',
-            ];
+            );
             ?>
 
 			<table>
