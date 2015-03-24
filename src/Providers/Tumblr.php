@@ -15,7 +15,7 @@ class Tumblr extends ProviderBase implements ProviderInterface
                 'title' => 't',
             ),
             array(
-                'v' => 3
+                'v' => 3,
             )
         );
     }

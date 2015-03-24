@@ -5,7 +5,7 @@ use SocialLinks\Page;
 
 /**
  * Base class extended by all providers
- * 
+ *
  * @property string   $shareUrl
  * @property null|int $shareCount
  */
@@ -40,7 +40,7 @@ abstract class ProviderBase
 
     /**
      * Default shareCount function for providers without count api
-     * 
+     *
      * {@inheritdoc}
      */
     public function shareCount()
