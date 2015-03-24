@@ -27,14 +27,4 @@ class Email extends ProviderBase implements ProviderInterface
             static::RFC3986
         );
     }
-
-    /**
-     * Not supported.
-     *
-     * {@inheritDoc}
-     */
-    public function shareCount()
-    {
-        return 0;
-    }
 }

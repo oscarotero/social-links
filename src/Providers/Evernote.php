@@ -21,14 +21,4 @@ class Evernote extends ProviderBase implements ProviderInterface
             )
         );
     }
-
-    /**
-     * Not supported.
-     *
-     * {@inheritDoc}
-     */
-    public function shareCount()
-    {
-        return 0;
-    }
 }

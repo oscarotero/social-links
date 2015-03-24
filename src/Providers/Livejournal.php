@@ -25,14 +25,4 @@ class Livejournal extends ProviderBase implements ProviderInterface
             array('event' => $postText)
         );
     }
-
-    /**
-     * Not supported.
-     *
-     * {@inheritDoc}
-     */
-    public function shareCount()
-    {
-        return 0;
-    }
 }

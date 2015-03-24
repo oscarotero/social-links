@@ -85,6 +85,7 @@ $data = empty($_GET) ? array('url' => null, 'title' => null, 'text' => null, 'im
                 'mailru',
                 'odnoklassniki',
                 'vk',
+                'tumblr',
             );
             ?>
 
@@ -94,7 +95,7 @@ $data = empty($_GET) ? array('url' => null, 'title' => null, 'text' => null, 'im
 
 				<tr>
 					<th><?php echo ucfirst($name); ?></th>
-					<td><?php echo $provider->shareCount; ?></td>
+					<td><?php echo $provider->shareCount === null ? 'not available' : $provider->shareCount; ?></td>
 					<td>
 						<?php echo $provider->shareUrl ? "<a href='{$provider->shareUrl}'>Share</a>" : 'Cannot be shared'; ?>
 					</td>

@@ -3,6 +3,12 @@ namespace SocialLinks\Providers;
 
 use SocialLinks\Page;
 
+/**
+ * Base class extended by all providers
+ * 
+ * @property string   $shareUrl
+ * @property null|int $shareCount
+ */
 abstract class ProviderBase
 {
     protected $page;
@@ -30,6 +36,16 @@ abstract class ProviderBase
             case 'shareCount':
                 return $this->$key = $this->$key();
         }
+    }
+
+    /**
+     * Default shareCount function for providers without count api
+     * 
+     * {@inheritdoc}
+     */
+    public function shareCount()
+    {
+        return;
     }
 
     /**

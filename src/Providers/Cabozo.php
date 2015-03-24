@@ -16,14 +16,4 @@ class Cabozo extends ProviderBase implements ProviderInterface
             array('url')
         );
     }
-
-    /**
-     * Not supported.
-     *
-     * {@inheritDoc}
-     */
-    public function shareCount()
-    {
-        return 0;
-    }
 }

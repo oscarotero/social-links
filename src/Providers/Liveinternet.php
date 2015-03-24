@@ -20,14 +20,4 @@ class Liveinternet extends ProviderBase implements ProviderInterface
             array('action' => 'n_add')
         );
     }
-
-    /**
-     * Not supported.
-     *
-     * {@inheritDoc}
-     */
-    public function shareCount()
-    {
-        return 0;
-    }
 }

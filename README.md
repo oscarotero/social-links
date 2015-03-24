@@ -28,7 +28,7 @@ $facebookProvider = $page->facebook;
 
 //Each provider has the following info:
 $page->twitter->shareUrl; //The url to share this page  (returns null if is not available)
-$page->twitter->shareCount; //The number of the current shares (returns 0 if is not available)
+$page->twitter->shareCount; //The number of the current shares (returns null if is not available)
 
 //Example
 $link = '<a href="%s">%s (%s)</a>';
