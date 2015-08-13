@@ -3,12 +3,14 @@ namespace SocialLinks\Metas;
 
 class Twittercard extends MetaBase implements MetaInterface
 {
+    protected $prefix = 'twitter:';
+
     /**
      * {@inheritDoc}
      */
     protected function generateTags()
     {
-        $this->addMeta('twitter:card', 'summary');
+        $this->addMeta('card', 'summary');
 
         $data = $this->page->get(array(
             'title',
@@ -19,7 +21,7 @@ class Twittercard extends MetaBase implements MetaInterface
 
         foreach ($data as $property => $content) {
             if (!empty($content)) {
-                $this->addMeta('twitter:'.$property, $content);
+                $this->addMeta($property, $content);
             }
         }
     }

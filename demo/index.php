@@ -29,23 +29,25 @@ $data = empty($_GET) ? array('url' => null, 'title' => null, 'text' => null, 'im
 			}
 			td, th {
 				padding: 10px;
-				border-bottom: solid 1px #ccc;
+				border-bottom: solid 1px #DCDCDC;
 			}
 			tr:first-child td, tr:first-child th {
-				border-top: solid 1px #ccc;
+				border-top: solid 1px #DCDCDC;
 			}
 			form {
-				background: #ccc;
-				padding: 10px;
+				background: #DCDCDC;
+				padding: 16px;
 				margin-top: 30px;
-				border-radius: 4px;
+				border-radius: 2px;
 			}
 			label {
 				display: block;
 				padding: 5px 0;
 			}
 			label input {
-				width: 300px;
+				width: calc(100% - 110px);
+				padding: 0.3em;
+				box-sizing: border-box;
 			}
 			label strong {
 				display: inline-block;
@@ -55,6 +57,11 @@ $data = empty($_GET) ? array('url' => null, 'title' => null, 'text' => null, 'im
 			input[type="submit"] {
 				margin-left: 110px;
 				margin-top: 10px;
+			}
+			pre {
+				background: #DCDCDC;
+				overflow-x: auto;
+				padding: 16px;
 			}
 		</style>
 	</head>
@@ -102,6 +109,20 @@ $data = empty($_GET) ? array('url' => null, 'title' => null, 'text' => null, 'im
 				</tr>
 			<?php endforeach ?>
 			</table>
+
+			<pre><code><?php
+				foreach ($page->html() as $tag) {
+					echo htmlspecialchars($tag)."\n";
+				}
+				echo "\n";
+				foreach ($page->openGraph() as $tag) {
+					echo htmlspecialchars($tag)."\n";
+				}
+				echo "\n";
+				foreach ($page->twitterCard() as $tag) {
+					echo htmlspecialchars($tag)."\n";
+				}
+			?></code></pre>
 
 		<?php endif; ?>
 

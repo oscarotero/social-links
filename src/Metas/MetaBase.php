@@ -10,6 +10,7 @@ use ArrayObject;
 abstract class MetaBase extends ArrayObject
 {
     protected $page;
+    protected $prefix;
 
     /**
      * Constructor.
@@ -34,7 +35,7 @@ abstract class MetaBase extends ArrayObject
      */
     public function addMeta($property, $content)
     {
-        $this[$property] = '<meta property="'.static::escape($property).'" content="'.static::escape($content).'">';
+        $this[$property] = '<meta property="'.$this->prefix.static::escape($property).'" content="'.static::escape($content).'">';
     }
 
     /**
@@ -42,7 +43,7 @@ abstract class MetaBase extends ArrayObject
      */
     public function addLink($rel, $href)
     {
-        $this[$rel] = '<link rel="'.static::escape($rel).'" href="'.static::escape($href).'">';
+        $this[$rel] = '<link rel="'.$this->prefix.static::escape($rel).'" href="'.static::escape($href).'">';
     }
 
     /**

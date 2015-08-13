@@ -38,35 +38,40 @@ printf($link, $page->plus->shareUrl, 'Share in Google Plus', $page->plus->shareC
 printf($link, $page->pinterest->shareUrl, 'Share in Pinterest', $page->pinterest->shareCount);
 printf($link, $page->linkedin->shareUrl, 'Share in Linkedin', $page->linkedin->shareCount);
 printf($link, $page->stumbleupon->shareUrl, 'Share StumbleUpon', $page->stumbleupon->shareCount);
+```
 
-//To insert <meta> tags in the header, use the functions:
+## Generate social meta tags
+
+Starting from version **1.6** you can use this library to generate also the tags for opengraph, twitter cards, etc. Example:
+
+```php
+//$page is the same variable than the example above
+
+//Use magic methods (instead magic properties) to get the objects with specific metas:
 $card = $page->twitterCard();
 
-foreach($card->getTags() as $tag) {
+//The object is traversable:
+foreach($card as $tag) {
 	echo $tag;
 }
 
-//You can get each tag by it's name
-$graph = $page->openGraph();
+//You can get each tag by it's name (without prefix)
+echo $card['card']; //<meta property="twitter:card" content="Summary">
 
-echo $graph['og:title']; //<meta property="og:title" content="Page title">
-
-//Or add new tags
-$graph->addTag('og:site_name', 'My site name');
+//Add/edit more metas
+$card->addMeta('author', '@the_author'); //<meta property="twitter:author" content="@the_autor">
 ```
 
-Usage in Symfony
-----------------
+
+## Usage in Symfony
 
 There is a Symfony bundle available here: https://github.com/astina/AstinaSocialLinksBundle
 
-Online demo
------------
+## Online demo
 
 http://oscarotero.com/social-links/demo/index.php
 
-Contributions
--------------
+## Contributions
 
 * All code must be PSR-1 and PSR-2 compilance. You can use this [php cs-fixer](http://cs.sensiolabs.org/)
 * The providers class names must be in lowercase starting by uppercase. For example `Linkedin` instead `LinkedIn`.

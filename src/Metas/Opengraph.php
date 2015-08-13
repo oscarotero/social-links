@@ -3,12 +3,14 @@ namespace SocialLinks\Metas;
 
 class Opengraph extends MetaBase implements MetaInterface
 {
+    protected $prefix = 'og:';
+
     /**
      * {@inheritDoc}
      */
     protected function generateTags()
     {
-        $this->addMeta('og:type', 'website');
+        $this->addMeta('type', 'website');
 
         $data = $this->page->get(array(
             'title',
@@ -19,7 +21,7 @@ class Opengraph extends MetaBase implements MetaInterface
 
         foreach ($data as $property => $content) {
             if (!empty($content)) {
-                $this->addMeta('og:'.$property, $content);
+                $this->addMeta($property, $content);
             }
         }
     }
