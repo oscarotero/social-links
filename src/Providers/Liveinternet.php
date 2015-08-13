@@ -1,5 +1,4 @@
 <?php
-
 namespace SocialLinks\Providers;
 
 class Liveinternet extends ProviderBase implements ProviderInterface

@@ -47,4 +47,18 @@ class BasicTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($page->twitter->shareUrl, 'https://twitter.com/intent/tweet?text=Page+title+via+%40twitterUser&url=http%3A%2F%2Fmypage.com');
         $this->assertEquals($page->vk->shareUrl, 'http://vk.com/share.php?url=http%3A%2F%2Fmypage.com&description=Extended+page+description&image=http%3A%2F%2Fmypage.com%2Fimage.png');
     }
+
+    /**
+     * @depends testPage
+     */
+    public function testMetas(Page $page)
+    {
+        $twitterCard = implode('', (array) $page->twitterCard());
+        $openGraph = implode('', (array) $page->openGraph());
+        $html = implode('', (array) $page->html());
+
+        $this->assertEquals($twitterCard, '<meta property="twitter:card" content="summary"><meta property="twitter:title" content="Page title"><meta property="twitter:image" content="http://mypage.com/image.png"><meta property="twitter:description" content="Extended page description"><meta property="twitter:site" content="@twitterUser">');
+        $this->assertEquals($openGraph, '<meta property="og:type" content="website"><meta property="og:title" content="Page title"><meta property="og:image" content="http://mypage.com/image.png"><meta property="og:url" content="http://mypage.com"><meta property="og:description" content="Extended page description">');
+        $this->assertEquals($html, '<meta property="title" content="Page title"><meta property="description" content="Extended page description"><link rel="image_src" href="http://mypage.com/image.png"><link rel="canonical" href="http://mypage.com">');
+    }
 }

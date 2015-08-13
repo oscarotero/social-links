@@ -1,5 +1,4 @@
 <?php
-
 namespace SocialLinks\Providers;
 
 class Livejournal extends ProviderBase implements ProviderInterface

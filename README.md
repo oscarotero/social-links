@@ -1,5 +1,4 @@
-SocialLinks
-===========
+# SocialLinks
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/oscarotero/social-links/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/oscarotero/social-links/?branch=master)
 [![Build Status](https://travis-ci.org/oscarotero/social-links.svg?branch=master)](https://travis-ci.org/oscarotero/social-links)
@@ -7,9 +6,9 @@ SocialLinks
 Created by Oscar Otero <http://oscarotero.com> <oom@oscarotero.com>
 
 This is a simple library to generate buttons to share an url or count the current shares using multiple providers (facebook, twitter, etc)
+It also generate the appropiate meta tags to insert in the `<head>`
 
-Usage
------
+## Usage
 
 ```php
 use SocialLinks\Page;
@@ -39,6 +38,21 @@ printf($link, $page->plus->shareUrl, 'Share in Google Plus', $page->plus->shareC
 printf($link, $page->pinterest->shareUrl, 'Share in Pinterest', $page->pinterest->shareCount);
 printf($link, $page->linkedin->shareUrl, 'Share in Linkedin', $page->linkedin->shareCount);
 printf($link, $page->stumbleupon->shareUrl, 'Share StumbleUpon', $page->stumbleupon->shareCount);
+
+//To insert <meta> tags in the header, use the functions:
+$card = $page->twitterCard();
+
+foreach($card->getTags() as $tag) {
+	echo $tag;
+}
+
+//You can get each tag by it's name
+$graph = $page->openGraph();
+
+echo $graph['og:title']; //<meta property="og:title" content="Page title">
+
+//Or add new tags
+$graph->addTag('og:site_name', 'My site name');
 ```
 
 Usage in Symfony

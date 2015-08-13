@@ -4,6 +4,7 @@ namespace SocialLinks;
 class Page
 {
     protected $providers = array();
+    protected $metas = array();
     protected $info = array(
         'url' => null,
         'title' => null,
@@ -50,6 +51,33 @@ class Page
         }
 
         throw new \Exception("The provider $key does not exists");
+    }
+
+    /**
+     * Magic method to instantiate and return metas in lazy mode.
+     *
+     * @param string $key       The meta collection name
+     * @param array  $arguments The arguments passed to the method
+     *
+     * @throws Exception if the meta does not exists
+     *
+     * @return Metas\MetaInterface
+     */
+    public function __call($key, $arguments)
+    {
+        $key = strtolower($key);
+
+        if (isset($this->metas[$key])) {
+            return $this->metas[$key];
+        }
+
+        $class = 'SocialLinks\\Metas\\'.ucfirst($key);
+
+        if (class_exists($class)) {
+            return $this->metas[$key] = new $class($this);
+        }
+
+        throw new \Exception("The meta $key does not exists");
     }
 
     /**
