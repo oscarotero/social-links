@@ -24,7 +24,7 @@ abstract class MetaBase extends ArrayObject
 
     /**
      * Generate all tags
-     * 
+     *
      * @return array
      */
     abstract protected function generateTags();

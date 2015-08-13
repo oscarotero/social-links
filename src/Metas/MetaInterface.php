@@ -6,7 +6,7 @@ use ArrayAccess;
 use Serializable;
 use Countable;
 
-interface MetaInterface extends IteratorAggregate, ArrayAccess, Serializable, Countable 
+interface MetaInterface extends IteratorAggregate, ArrayAccess, Serializable, Countable
 {
     /**
      * Add a meta tag
