@@ -83,11 +83,51 @@ class Page
     /**
      * Gets the page url.
      *
-     * @return string
+     * @return string|null
      */
     public function getUrl()
     {
         return $this->info['url'];
+    }
+
+    /**
+     * Gets the page title.
+     *
+     * @return string|null
+     */
+    public function getTitle()
+    {
+        return $this->info['title'];
+    }
+
+    /**
+     * Gets the page text description.
+     *
+     * @return string|null
+     */
+    public function getText()
+    {
+        return $this->info['text'];
+    }
+
+    /**
+     * Gets the page image.
+     *
+     * @return string|null
+     */
+    public function getImage()
+    {
+        return $this->info['image'];
+    }
+
+    /**
+     * Gets the page twitterUser.
+     *
+     * @return string|null
+     */
+    public function getTwitterUser()
+    {
+        return $this->info['twitterUser'];
     }
 
     /**
