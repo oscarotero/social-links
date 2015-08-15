@@ -28,7 +28,7 @@ class Opengraph extends MetaBase implements MetaInterface
 
     /**
      * OpenGraph uses the attribute "property" instead the standard "name"
-     * 
+     *
      * {@inheritdoc}
      */
     public function addMeta($property, $content)

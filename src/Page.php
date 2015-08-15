@@ -32,12 +32,13 @@ class Page
      * - remote html tags
      * - remove spaces around
      * - decode escaped html entities
-     * 
+     *
      * @param string
-     * 
+     *
      * @return string
      */
-    protected static function normalize($value) {
+    protected static function normalize($value)
+    {
         return trim(strip_tags(htmlspecialchars_decode($value)));
     }
 
