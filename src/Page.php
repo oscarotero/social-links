@@ -24,7 +24,21 @@ class Page
             throw new \Exception("Only the following fields are available:".implode(',', array_keys($this->info)));
         }
 
-        $this->info = array_map('trim', array_map('strip_tags', $info + $this->info));
+        $this->info = array_map('static::normalize', $info + $this->info);
+    }
+
+    /**
+     * Normalize value before save it:
+     * - remote html tags
+     * - remove spaces around
+     * - decode escaped html entities
+     * 
+     * @param string
+     * 
+     * @return string
+     */
+    protected static function normalize($value) {
+        return trim(strip_tags(htmlspecialchars_decode($value)));
     }
 
     /**
