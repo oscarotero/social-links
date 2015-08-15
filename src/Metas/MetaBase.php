@@ -33,9 +33,9 @@ abstract class MetaBase extends ArrayObject
     /**
      * {@inheritdoc}
      */
-    public function addMeta($property, $content)
+    public function addMeta($name, $content)
     {
-        $this[$property] = '<meta property="'.$this->prefix.static::escape($property).'" content="'.static::escape($content).'">';
+        $this[$name] = '<meta name="'.$this->prefix.static::escape($name).'" content="'.static::escape($content).'">';
     }
 
     /**
