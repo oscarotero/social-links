@@ -24,7 +24,7 @@ class Page
             throw new \Exception("Only the following fields are available:".implode(',', array_keys($this->info)));
         }
 
-        $this->info = array_map('strip_tags', $info + $this->info);
+        $this->info = array_map('trim', array_map('strip_tags', $info + $this->info));
     }
 
     /**
