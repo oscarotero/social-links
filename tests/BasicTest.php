@@ -7,7 +7,7 @@ class BasicTest extends PHPUnit_Framework_TestCase
     {
         $info = array(
             'url' => 'http://mypage.com   ',
-            'title' => "Page <strong>title</strong>\n",
+            'title' => "Page \n  <strong>title</strong>\n",
             'text' => 'Extended <strong>page description</strong> &amp; ',
             'image' => 'http://mypage.com/image.png',
             'twitterUser' => '@twitterUser',

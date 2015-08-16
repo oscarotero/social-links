@@ -29,7 +29,8 @@ class Page
 
     /**
      * Normalize value before save it:
-     * - remote html tags
+     * - remove html tags
+     * - remove line-ending and multiple spaces
      * - remove spaces around
      * - decode escaped html entities
      *
@@ -39,7 +40,7 @@ class Page
      */
     protected static function normalize($value)
     {
-        return trim(strip_tags(htmlspecialchars_decode($value)));
+        return trim(strip_tags(htmlspecialchars_decode(preg_replace('/\s+/', ' ', $value))));
     }
 
     /**
