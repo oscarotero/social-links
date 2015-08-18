@@ -2,7 +2,7 @@
 	"name": "social-links/social-links",
 	"type": "library",
 	"description": "PHP library to generate share buttons",
-	"keywords": ["image"],
+	"keywords": ["share", "social", "facebook", "twitter", "opengraph", "twittercards", "buttons", "links"],
 	"homepage": "https://github.com/oscarotero/social-links",
 	"license": "MIT",
 	"authors": [
