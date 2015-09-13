@@ -107,7 +107,7 @@ class Page
             return;
         }
 
-        $connections = [];
+        $connections = array();
         $curl = curl_multi_init();
 
         foreach ($providers as $provider) {
