@@ -19,8 +19,6 @@ class Scoopit extends ProviderBase implements ProviderInterface
      */
     public function shareCountRequest()
     {
-        $url = $this->page->getUrl();
-
         return static::request(
             $this->buildUrl(
                 'http://www.scoop.it/button',

@@ -95,6 +95,7 @@ $data = empty($_GET) ? array('url' => null, 'title' => null, 'text' => null, 'im
                 'tumblr',
                 'whatsapp',
                 'scoopit',
+                'reddit',
             );
 
             $page->shareCount($providers);
