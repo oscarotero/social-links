@@ -42,7 +42,7 @@ printf($link, $page->stumbleupon->shareUrl, 'Share StumbleUpon', $page->stumbleu
 
 ## Preload share counters
 
-The first time you use, for example `$page->facebook->shareCount`, a request to facebook API is executed. This means if you need also `$page->twitter->shareCount` and $page->plus->shareCount`, three requests must be required. To improve performance, you can preload all these request, to be executed simultaneous (instead one after other). Example:
+The first time you use, for example `$page->facebook->shareCount`, a request to facebook API is executed. This means if you need also `$page->twitter->shareCount` and `$page->plus->shareCount`, three requests must be required. To improve performance, you can preload all these request, to be executed simultaneous (instead one after other). Example:
 
 ```php
 $page = newPage(['url' => 'http://page.com']);
@@ -54,6 +54,7 @@ $page->shareCount(['twitter', 'facebook', plus]);
 echo $page->facebook->shareCount;
 echo $page->twitter->shareCount;
 echo $page->plus->shareCount;
+```
 
 
 ## Generate social meta tags
