@@ -40,6 +40,22 @@ printf($link, $page->linkedin->shareUrl, 'Share in Linkedin', $page->linkedin->s
 printf($link, $page->stumbleupon->shareUrl, 'Share StumbleUpon', $page->stumbleupon->shareCount);
 ```
 
+## Preload share counters
+
+The first time you use, for example `$page->facebook->shareCount`, a request to facebook API is executed. This means if you need also `$page->twitter->shareCount` and $page->plus->shareCount`, three requests must be required. To improve performance, you can preload all these request, to be executed simultaneous (instead one after other). Example:
+
+```php
+$page = newPage(['url' => 'http://page.com']);
+
+//Preload the counters
+$page->shareCount(['twitter', 'facebook', plus]);
+
+//Use them
+echo $page->facebook->shareCount;
+echo $page->twitter->shareCount;
+echo $page->plus->shareCount;
+
+
 ## Generate social meta tags
 
 Starting from version **1.6** you can use this library to generate also the tags for opengraph, twitter cards, etc. Example:
