@@ -135,7 +135,7 @@ class Page
             } while ($return === CURLM_CALL_MULTI_PERFORM);
         }
 
-        $result = [];
+        $result = array();
 
         foreach ($connections as $provider => $request) {
             $this->$provider->shareCount = $this->$provider->shareCount(curl_multi_getcontent($request));
