@@ -2,6 +2,7 @@
 namespace SocialLinks\Providers;
 
 use SocialLinks\Page;
+use DOMDocument;
 
 /**
  * Base class extended by all providers
@@ -166,5 +167,22 @@ abstract class ProviderBase
         preg_match("/^\w+\((.*)\)$/", $content, $matches);
 
         return json_decode($matches[1], true);
+    }
+
+    /**
+     * Handle HTML responses
+     *
+     * @param string $content
+     *
+     * @return DOMDocument
+     */
+    protected static function htmlResponse($content)
+    {
+        $errors = libxml_use_internal_errors(true);
+        $document = new DOMDocument();
+        $document->loadHTML($content);
+        libxml_use_internal_errors($errors);
+
+        return $document;
     }
 }
