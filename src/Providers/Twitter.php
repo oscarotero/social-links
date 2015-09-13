@@ -29,12 +29,22 @@ class Twitter extends ProviderBase implements ProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function shareCount()
+    public function shareCountRequest()
     {
-        $count = $this->getJson(
-            'https://cdn.api.twitter.com/1/urls/count.json',
-            array('url')
+        return static::request(
+            $this->buildUrl(
+                'https://cdn.api.twitter.com/1/urls/count.json',
+                array('url')
+            )
         );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function shareCount($response)
+    {
+        $count = static::jsonResponse($response);
 
         return isset($count['count']) ? intval($count['count']) : 0;
     }

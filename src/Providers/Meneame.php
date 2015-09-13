@@ -19,14 +19,22 @@ class Meneame extends ProviderBase implements ProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function shareCount()
+    public function shareCountRequest()
     {
-        $result = $this->getText(
-            "{$this->domain}/api/url.php",
-            array('url')
+        return static::request(
+            $this->buildUrl(
+                "{$this->domain}/api/url.php",
+                array('url')
+            )
         );
+    }
 
-        $result = explode(' ', $result);
+    /**
+     * {@inheritDoc}
+     */
+    public function shareCount($response)
+    {
+        $result = explode(' ', $response);
 
         if (isset($result[0]) && $result[0] === 'OK') {
             return intval($result[2]);

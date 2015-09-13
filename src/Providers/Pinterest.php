@@ -21,12 +21,22 @@ class Pinterest extends ProviderBase implements ProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function shareCount()
+    public function shareCountResponse()
     {
-        $count = $this->getJsonp(
-            'https://api.pinterest.com/v1/urls/count.json',
-            array('url')
+        return static::response(
+            $this->buildUrl(
+                'https://api.pinterest.com/v1/urls/count.json',
+                array('url')
+            )
         );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function shareCount($response)
+    {
+        $count = static::jsonpResponse($response);
 
         return isset($count['count']) ? intval($count['count']) : 0;
     }

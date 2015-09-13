@@ -20,12 +20,24 @@ class Stumbleupon extends ProviderBase implements ProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function shareCount()
+    public function shareCountRequest()
     {
-        $count = $this->getJson(
-            'http://www.stumbleupon.com/services/1.01/badge.getinfo',
-            array('url')
+        return static::request(
+            $this->buildUrl(
+                'http://www.stumbleupon.com/services/1.01/badge.getinfo',
+                array('url')
+            )
         );
+
+        return isset($count['result']['views']) ? intval($count['result']['views']) : 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function shareCount($response)
+    {
+        $count = static::jsonResponse($response);
 
         return isset($count['result']['views']) ? intval($count['result']['views']) : 0;
     }

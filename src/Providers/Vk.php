@@ -23,17 +23,25 @@ class Vk extends ProviderBase implements ProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function shareCount()
+    public function shareCountRequest()
+    {
+        static::request(
+            $this->buildUrl(
+                'https://vk.com/share.php',
+                array('url'),
+                array('act' => 'count')
+            )
+        );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function shareCount($response)
     {
         // This returns something like:
         // VK.Share.count(0, 59);
-        $countText = $this->getText(
-            'https://vk.com/share.php',
-            array('url'),
-            array('act' => 'count')
-        );
-
-        $counts = explode(',', $countText);
+        $counts = explode(',', $response);
 
         if (!isset($counts[1])) {
             return 0;

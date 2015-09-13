@@ -17,14 +17,12 @@ class Plus extends ProviderBase implements ProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function shareCount()
+    public function shareCountRequest()
     {
         $url = $this->page->getUrl();
 
-        $count = $this->getJson(
+        return static::request(
             'https://clients6.google.com/rpc',
-            array(),
-            array(),
             json_encode(
                 array(
                     array(
@@ -45,6 +43,14 @@ class Plus extends ProviderBase implements ProviderInterface
             ),
             array('Content-type: application/json')
         );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function shareCount($response)
+    {
+        $count = static::jsonResponse($response);
 
         return isset($count[0]['result']['metadata']['globalCounts']['count']) ? intval($count[0]['result']['metadata']['globalCounts']['count']) : 0;
     }

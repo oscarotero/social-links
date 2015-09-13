@@ -22,13 +22,23 @@ class Linkedin extends ProviderBase implements ProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function shareCount()
+    public function shareCountRequest()
     {
-        $count = $this->getJson(
-            'https://www.linkedin.com/countserv/count/share',
-            array('url'),
-            array('format' => 'json')
+        return static::request(
+            $this->buildUrl(
+                'https://www.linkedin.com/countserv/count/share',
+                array('url'),
+                array('format' => 'json')
+            )
         );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function shareCount($response)
+    {
+        $count = self::jsonResponse($response);
 
         return isset($count['count']) ? intval($count['count']) : 0;
     }

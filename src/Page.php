@@ -97,6 +97,56 @@ class Page
     }
 
     /**
+     * Preload the counter
+     *
+     * @param array $providers
+     */
+    public function shareCount(array $providers)
+    {
+        if (count($providers) < 2) {
+            return;
+        }
+
+        $connections = [];
+        $curl = curl_multi_init();
+
+        foreach ($providers as $provider) {
+            $request = $this->$provider->shareCountRequest();
+
+            if ($request !== null) {
+                $connections[$provider] = $request;
+                curl_multi_add_handle($curl, $request);
+            } else {
+                $this->$provider->shareCount = null;
+            }
+        }
+
+        do {
+            $return = curl_multi_exec($curl, $active);
+        } while ($return === CURLM_CALL_MULTI_PERFORM);
+
+        while ($active && $return === CURLM_OK) {
+            if (curl_multi_select($curl) === -1) {
+                usleep(100);
+            }
+
+            do {
+                $return = curl_multi_exec($curl, $active);
+            } while ($return === CURLM_CALL_MULTI_PERFORM);
+        }
+
+        $result = [];
+
+        foreach ($connections as $provider => $request) {
+            $this->$provider->shareCount = $this->$provider->shareCount(curl_multi_getcontent($request));
+
+            curl_multi_remove_handle($curl, $request);
+        }
+
+        curl_multi_close($curl);
+    }
+
+    /**
      * Gets the page url.
      *
      * @return string|null

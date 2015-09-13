@@ -25,18 +25,28 @@ class Facebook extends ProviderBase implements ProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function shareCount()
+    public function shareCountRequest()
     {
-        $count = $this->getJson(
-            'https://api.facebook.com/restserver.php',
-            array(
-                'url' => 'urls[0]',
-            ),
-            array(
-                'method' => 'links.getStats',
-                'format' => 'json',
+        return static::request(
+            $this->buildUrl(
+                'https://api.facebook.com/restserver.php',
+                array(
+                    'url' => 'urls[0]',
+                ),
+                array(
+                    'method' => 'links.getStats',
+                    'format' => 'json',
+                )
             )
         );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function shareCount($response)
+    {
+        $count = self::jsonResponse($response);
 
         return isset($count[0]['share_count']) ? intval($count[0]['share_count']) : 0;
     }
