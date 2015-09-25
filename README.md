@@ -15,11 +15,11 @@ use SocialLinks\Page;
 
 //Create a Page instance with the url information
 $page = new Page([
-	'url' => 'http://mypage.com',
-	'title' => 'Page title',
-	'text' => 'Extended page description',
-	'image' => 'http://mypage.com/image.png',
-	'twitterUser' => '@twitterUser'
+    'url' => 'http://mypage.com',
+    'title' => 'Page title',
+    'text' => 'Extended page description',
+    'image' => 'http://mypage.com/image.png',
+    'twitterUser' => '@twitterUser'
 ]);
 
 //Use the properties to get the providers info, for example:
@@ -69,7 +69,7 @@ $card = $page->twitterCard();
 
 //The object is traversable:
 foreach($card as $tag) {
-	echo $tag;
+    echo $tag;
 }
 
 //You can get each tag by it's name (without prefix)
@@ -78,6 +78,34 @@ echo $card['card']; //<meta property="twitter:card" content="Summary">
 //Add/edit more metas
 $card->addMeta('author', '@the_author'); //<meta property="twitter:author" content="@the_autor">
 ```
+
+## Providers supported
+
+Name            | Counter
+----------------|--------
+blogger         | N
+bobrdobr        | N
+cabozo          | N
+chuza           | Y
+email           | N
+evernote        | N
+facebook        | Y
+linkedin        | Y
+liveinternet    | N
+livejournal     | N
+mailru          | Y
+meneame         | Y
+odnoklassniki   | Y
+pinterest       | N
+plus            | Y
+reddit          | Y
+scoopit         | Y
+stumbleupon     | Y
+telegram        | N
+tumblr          | N
+twitter         | Y
+vk              | N
+whatsapp        | N
 
 
 ## Usage in Symfony
