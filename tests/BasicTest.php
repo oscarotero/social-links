@@ -60,6 +60,7 @@ class BasicTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($page->twitter->shareUrl, 'https://twitter.com/intent/tweet?text=Page+title+via+%40twitterUser&url=http%3A%2F%2Fmypage.com');
         $this->assertEquals($page->vk->shareUrl, 'http://vk.com/share.php?url=http%3A%2F%2Fmypage.com&description=Extended+page+description+%26&image=http%3A%2F%2Fmypage.com%2Fimage.png');
         $this->assertEquals($page->whatsapp->shareUrl, 'whatsapp://send?text=Page+title+http%3A%2F%2Fmypage.com');
+        $this->assertEquals($page->telegram->shareUrl, 'tg://msg?text=Page+title+http%3A%2F%2Fmypage.com');
     }
 
     /**
