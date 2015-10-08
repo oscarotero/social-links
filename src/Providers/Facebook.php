@@ -9,15 +9,14 @@ class Facebook extends ProviderBase implements ProviderInterface
     public function shareUrl()
     {
         return $this->buildUrl(
-            'https://www.facebook.com/sharer.php',
+            'https://www.facebook.com/sharer/sharer.php',
             array(
-                'url' => 'p[url]',
-                'title' => 'p[title]',
-                'text' => 'p[summary]',
-                'image' => 'p[images][0]',
+                'url' => 'u',
+                'title' => 't',
             ),
             array(
-                's' => 100,
+                'display' => 'popup',
+                'redirect_uri' => 'http://www.facebook.com'
             )
         );
     }
