@@ -29,8 +29,6 @@ class Stumbleupon extends ProviderBase implements ProviderInterface
                 array('url')
             )
         );
-
-        return isset($count['result']['views']) ? intval($count['result']['views']) : 0;
     }
 
     /**
