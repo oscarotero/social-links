@@ -1,11 +1,12 @@
 <?php
+
 namespace SocialLinks\Providers;
 
 use SocialLinks\Page;
 use DOMDocument;
 
 /**
- * Base class extended by all providers
+ * Base class extended by all providers.
  *
  * @property string   $shareUrl
  * @property null|int $shareCount
@@ -51,7 +52,7 @@ abstract class ProviderBase
     }
 
     /**
-     * Default shareCount function for providers without count api
+     * Default shareCount function for providers without count api.
      *
      * {@inheritdoc}
      */
@@ -61,7 +62,7 @@ abstract class ProviderBase
     }
 
     /**
-     * Default shareCountRequest function for providers without count api
+     * Default shareCountRequest function for providers without count api.
      *
      * {@inheritdoc}
      */
@@ -73,10 +74,10 @@ abstract class ProviderBase
     /**
      * Generates a valid url.
      *
-     * @param string  $url
-     * @param array   $pageParams parameters to be taken from page fields as $paramName  => $paramNameInTheURL
-     * @param array   $getParams  extra parameters as $key => $value
-     * @param integer $encoding   Type of encoding used. It can be static::RFC3986 or static::RFC1738
+     * @param string $url
+     * @param array  $pageParams parameters to be taken from page fields as $paramName  => $paramNameInTheURL
+     * @param array  $getParams  extra parameters as $key => $value
+     * @param int    $encoding   Type of encoding used. It can be static::RFC3986 or static::RFC1738
      */
     protected function buildUrl($url, array $pageParams = null, array $getParams = array(), $encoding = self::RFC1738)
     {
@@ -102,11 +103,11 @@ abstract class ProviderBase
     }
 
     /**
-     * Build a curl request
+     * Build a curl request.
      *
-     * @param string         $url
-     * @param boolean|string $post
-     * @param array          $headers
+     * @param string      $url
+     * @param bool|string $post
+     * @param array       $headers
      *
      * @return resource
      */
@@ -144,7 +145,7 @@ abstract class ProviderBase
     }
 
     /**
-     * Handle JSON responses
+     * Handle JSON responses.
      *
      * @param string $content
      *
@@ -156,7 +157,7 @@ abstract class ProviderBase
     }
 
     /**
-     * Handle JSONP responses
+     * Handle JSONP responses.
      *
      * @param string $content
      *
@@ -170,7 +171,7 @@ abstract class ProviderBase
     }
 
     /**
-     * Handle HTML responses
+     * Handle HTML responses.
      *
      * @param string $content
      *

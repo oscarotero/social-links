@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialLinks\Metas;
 
 class Twittercard extends MetaBase implements MetaInterface
@@ -6,7 +7,7 @@ class Twittercard extends MetaBase implements MetaInterface
     protected $prefix = 'twitter:';
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function generateTags()
     {

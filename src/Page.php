@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialLinks;
 
 class Page
@@ -21,7 +22,7 @@ class Page
     public function __construct(array $info)
     {
         if (array_diff_key($info, $this->info)) {
-            throw new \Exception("Only the following fields are available:".implode(',', array_keys($this->info)));
+            throw new \Exception('Only the following fields are available:'.implode(',', array_keys($this->info)));
         }
 
         $this->info = array_map('static::normalize', $info + $this->info);
@@ -32,7 +33,7 @@ class Page
      * - remove html tags
      * - remove line-ending and multiple spaces
      * - remove spaces around
-     * - decode escaped html entities
+     * - decode escaped html entities.
      *
      * @param string
      *
@@ -97,7 +98,7 @@ class Page
     }
 
     /**
-     * Preload the counter
+     * Preload the counter.
      *
      * @param array $providers
      */

@@ -1,10 +1,11 @@
 <?php
+
 namespace SocialLinks\Providers;
 
 class Telegram extends ProviderBase implements ProviderInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareUrl()
     {

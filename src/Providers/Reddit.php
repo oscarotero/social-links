@@ -1,10 +1,11 @@
 <?php
+
 namespace SocialLinks\Providers;
 
 class Reddit extends ProviderBase implements ProviderInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareUrl()
     {
@@ -15,7 +16,7 @@ class Reddit extends ProviderBase implements ProviderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareCountRequest()
     {
@@ -28,7 +29,7 @@ class Reddit extends ProviderBase implements ProviderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareCount($response)
     {

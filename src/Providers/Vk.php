@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialLinks\Providers;
 
 /**
@@ -7,7 +8,7 @@ namespace SocialLinks\Providers;
 class Vk extends ProviderBase implements ProviderInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareUrl()
     {
@@ -21,7 +22,7 @@ class Vk extends ProviderBase implements ProviderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareCountRequest()
     {
@@ -35,7 +36,7 @@ class Vk extends ProviderBase implements ProviderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareCount($response)
     {

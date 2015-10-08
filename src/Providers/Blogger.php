@@ -1,10 +1,11 @@
 <?php
+
 namespace SocialLinks\Providers;
 
 class Blogger extends ProviderBase implements ProviderInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareUrl()
     {

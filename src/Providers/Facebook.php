@@ -1,10 +1,11 @@
 <?php
+
 namespace SocialLinks\Providers;
 
 class Facebook extends ProviderBase implements ProviderInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareUrl()
     {
@@ -16,13 +17,13 @@ class Facebook extends ProviderBase implements ProviderInterface
             ),
             array(
                 'display' => 'popup',
-                'redirect_uri' => 'http://www.facebook.com'
+                'redirect_uri' => 'http://www.facebook.com',
             )
         );
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareCountRequest()
     {
@@ -41,7 +42,7 @@ class Facebook extends ProviderBase implements ProviderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareCount($response)
     {

@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialLinks\Metas;
 
 class Opengraph extends MetaBase implements MetaInterface
@@ -6,7 +7,7 @@ class Opengraph extends MetaBase implements MetaInterface
     protected $prefix = 'og:';
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function generateTags()
     {
@@ -27,7 +28,7 @@ class Opengraph extends MetaBase implements MetaInterface
     }
 
     /**
-     * OpenGraph uses the attribute "property" instead the standard "name"
+     * OpenGraph uses the attribute "property" instead the standard "name".
      *
      * {@inheritdoc}
      */

@@ -1,11 +1,12 @@
 <?php
+
 namespace SocialLinks\Metas;
 
 use SocialLinks\Page;
 use ArrayObject;
 
 /**
- * Base class extended by all metas
+ * Base class extended by all metas.
  */
 abstract class MetaBase extends ArrayObject
 {
@@ -24,7 +25,7 @@ abstract class MetaBase extends ArrayObject
     }
 
     /**
-     * Generate all tags
+     * Generate all tags.
      *
      * @return array
      */
@@ -47,7 +48,7 @@ abstract class MetaBase extends ArrayObject
     }
 
     /**
-     * Escapes the value of an attribute
+     * Escapes the value of an attribute.
      *
      * @param string $value
      *

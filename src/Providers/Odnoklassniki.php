@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialLinks\Providers;
 
 /**
@@ -9,7 +10,7 @@ class Odnoklassniki extends ProviderBase implements ProviderInterface
     protected $countField = 'share_ok';
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareUrl()
     {
@@ -26,7 +27,7 @@ class Odnoklassniki extends ProviderBase implements ProviderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareCountRequest()
     {
@@ -52,7 +53,7 @@ class Odnoklassniki extends ProviderBase implements ProviderInterface
      *  "share_ok": 14617 // # of shares in Odnoklassniki
      * }.
      *
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareCount($response)
     {

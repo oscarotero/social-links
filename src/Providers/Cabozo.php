@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialLinks\Providers;
 
 /**
@@ -7,7 +8,7 @@ namespace SocialLinks\Providers;
 class Cabozo extends ProviderBase implements ProviderInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareUrl()
     {

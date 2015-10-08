@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialLinks\Providers;
 
 /**
@@ -9,7 +10,7 @@ class Mailru extends Odnoklassniki
     protected $countField = 'share_mm';
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareUrl()
     {

@@ -1,4 +1,5 @@
 <?php
+
 use SocialLinks\Page;
 
 class BasicTest extends PHPUnit_Framework_TestCase
@@ -15,7 +16,7 @@ class BasicTest extends PHPUnit_Framework_TestCase
 
         $infoNormalized = array(
             'url' => 'http://mypage.com',
-            'title' => "Page title",
+            'title' => 'Page title',
             'text' => 'Extended page description &',
             'image' => 'http://mypage.com/image.png',
             'twitterUser' => '@twitterUser',

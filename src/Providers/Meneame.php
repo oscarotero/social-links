@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialLinks\Providers;
 
 class Meneame extends ProviderBase implements ProviderInterface
@@ -6,7 +7,7 @@ class Meneame extends ProviderBase implements ProviderInterface
     protected $domain = 'http://meneame.net';
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareUrl()
     {
@@ -17,7 +18,7 @@ class Meneame extends ProviderBase implements ProviderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareCountRequest()
     {
@@ -30,7 +31,7 @@ class Meneame extends ProviderBase implements ProviderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shareCount($response)
     {

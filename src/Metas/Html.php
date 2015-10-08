@@ -1,10 +1,11 @@
 <?php
+
 namespace SocialLinks\Metas;
 
 class Html extends MetaBase implements MetaInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function generateTags()
     {

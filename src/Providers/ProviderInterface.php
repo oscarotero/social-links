@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialLinks\Providers;
 
 interface ProviderInterface
@@ -15,12 +16,12 @@ interface ProviderInterface
      *
      * @param string $response Request response body
      *
-     * @return integer|null
+     * @return int|null
      */
     public function shareCount($response);
 
     /**
-     * Returns a curl resource used to count the share
+     * Returns a curl resource used to count the share.
      *
      * @return resource|null
      */

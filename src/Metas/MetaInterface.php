@@ -1,4 +1,5 @@
 <?php
+
 namespace SocialLinks\Metas;
 
 use IteratorAggregate;
@@ -9,7 +10,7 @@ use Countable;
 interface MetaInterface extends IteratorAggregate, ArrayAccess, Serializable, Countable
 {
     /**
-     * Add a meta tag
+     * Add a meta tag.
      *
      * @param string $property
      * @param string $content
@@ -19,7 +20,7 @@ interface MetaInterface extends IteratorAggregate, ArrayAccess, Serializable, Co
     public function addMeta($property, $content);
 
     /**
-     * Generate a link tag
+     * Generate a link tag.
      *
      * @param string $rel
      * @param string $href
