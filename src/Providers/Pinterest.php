@@ -22,9 +22,9 @@ class Pinterest extends ProviderBase implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function shareCountResponse()
+    public function shareCountRequest()
     {
-        return static::response(
+        return static::request(
             $this->buildUrl(
                 'https://api.pinterest.com/v1/urls/count.json',
                 array('url')
