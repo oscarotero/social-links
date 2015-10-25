@@ -12,6 +12,7 @@ abstract class MetaBase extends ArrayObject
 {
     protected $page;
     protected $prefix;
+    protected $characterLimits = [];
 
     /**
      * Constructor.
@@ -36,6 +37,13 @@ abstract class MetaBase extends ArrayObject
      */
     public function addMeta($name, $content)
     {
+        $limit = isset($this->characterLimits[$name]) ? $this->characterLimits[$name] : null;
+
+        if($limit && strlen($content) > $limit)
+        {
+            $content = substr($content, 0, $limit - 3).'...';
+        }
+
         $this[$name] = '<meta name="'.$this->prefix.static::escape($name).'" content="'.static::escape($content).'">';
     }
 

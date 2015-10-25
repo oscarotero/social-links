@@ -6,6 +6,11 @@ class Opengraph extends MetaBase implements MetaInterface
 {
     protected $prefix = 'og:';
 
+    protected $characterLimits = [
+        'title' => 65,
+        'description' => 156,
+    ];
+
     /**
      * {@inheritdoc}
      */
