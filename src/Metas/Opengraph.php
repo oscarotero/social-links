@@ -39,6 +39,8 @@ class Opengraph extends MetaBase implements MetaInterface
      */
     public function addMeta($property, $content)
     {
+        $content = $this->filterAttribute($property, $content);
+
         $this[$property] = '<meta property="'.$this->prefix.static::escape($property).'" content="'.static::escape($content).'">';
     }
 }
