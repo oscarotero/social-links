@@ -78,6 +78,7 @@ $data = empty($_GET) ? array('url' => null, 'title' => null, 'text' => null, 'im
                 'bobrdobr',
                 'cabozo',
                 'chuza',
+                'classroom',
                 'email',
                 'evernote',
                 'facebook',

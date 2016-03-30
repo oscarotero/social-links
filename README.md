@@ -83,29 +83,30 @@ $card->addMeta('author', '@the_author'); //<meta property="twitter:author" conte
 
 Name            | Counter
 ----------------|--------
-blogger         | N
-bobrdobr        | N
-cabozo          | N
-chuza           | Y
-email           | N
-evernote        | N
-facebook        | Y
-linkedin        | Y
-liveinternet    | N
-livejournal     | N
-mailru          | Y
-meneame         | Y
-odnoklassniki   | Y
-pinterest       | N
-plus            | Y
-reddit          | Y
-scoopit         | Y
-stumbleupon     | Y
-telegram        | N
-tumblr          | N
-twitter         | Y
-vk              | N
-whatsapp        | N
+blogger         |  -
+bobrdobr        |  -
+cabozo          |  -
+chuza           | YES
+classroom       |  -
+email           |  -
+evernote        |  -
+facebook        | YES
+linkedin        | YES
+liveinternet    |  -
+livejournal     |  -
+mailru          | YES
+meneame         | YES
+odnoklassniki   | YES
+pinterest       |  -
+plus            | YES
+reddit          | YES
+scoopit         | YES
+stumbleupon     | YES
+telegram        |  -
+tumblr          |  -
+twitter         | YES
+vk              |  -
+whatsapp        |  -
 
 
 ## Usage in Symfony
