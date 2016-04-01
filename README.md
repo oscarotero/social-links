@@ -107,6 +107,7 @@ tumblr          |  -
 twitter         | YES
 vk              |  -
 whatsapp        |  -
+xing            | YES
 
 
 ## Usage in Symfony

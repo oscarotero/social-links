@@ -47,6 +47,6 @@ class Xing extends ProviderBase implements ProviderInterface
     {
         preg_match('/xing-count(.+?)(\d+)(.*?)<\/span>/i', $response, $matches);
 
-        return (int)$matches[2];
+        return empty($matches[2]) ? 0 : (int) $matches[2];
     }
 }
