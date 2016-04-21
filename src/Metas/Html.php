@@ -4,6 +4,11 @@ namespace SocialLinks\Metas;
 
 class Html extends MetaBase implements MetaInterface
 {
+    protected $characterLimits = [
+        'title' => 55,
+        'description' => 155,
+    ];
+
     /**
      * {@inheritdoc}
      */

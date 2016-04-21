@@ -12,6 +12,7 @@ abstract class MetaBase extends ArrayObject
 {
     protected $page;
     protected $prefix;
+    protected $characterLimits = [];
 
     /**
      * Constructor.
@@ -36,6 +37,8 @@ abstract class MetaBase extends ArrayObject
      */
     public function addMeta($name, $content)
     {
+        $content = $this->filterAttribute($name, $content);
+
         $this[$name] = '<meta name="'.$this->prefix.static::escape($name).'" content="'.static::escape($content).'">';
     }
 
@@ -57,5 +60,24 @@ abstract class MetaBase extends ArrayObject
     protected static function escape($value)
     {
         return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+    }
+
+    /**
+     * Filters attribute values to trim by length
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    protected function filterAttribute($name, $content)
+    {
+        $limit = isset($this->characterLimits[$name]) ? $this->characterLimits[$name] : null;
+
+        if($limit && strlen($content) > $limit)
+        {
+            $content = substr($content, 0, $limit - 3).'...';
+        }
+
+        return $content;
     }
 }

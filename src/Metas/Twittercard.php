@@ -6,6 +6,12 @@ class Twittercard extends MetaBase implements MetaInterface
 {
     protected $prefix = 'twitter:';
 
+    protected $characterLimits = [
+        'title' => 65,
+        'description' => 200,
+    ];
+
+
     /**
      * {@inheritdoc}
      */
