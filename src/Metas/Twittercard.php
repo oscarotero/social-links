@@ -11,7 +11,6 @@ class Twittercard extends MetaBase implements MetaInterface
         'description' => 200,
     );
 
-
     /**
      * {@inheritdoc}
      */

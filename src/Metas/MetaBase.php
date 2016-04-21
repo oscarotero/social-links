@@ -53,7 +53,7 @@ abstract class MetaBase extends ArrayObject
     }
 
     /**
-     * Adds an array of metas
+     * Adds an array of metas.
      * 
      * @param array $metas
      */
@@ -67,7 +67,7 @@ abstract class MetaBase extends ArrayObject
     }
 
     /**
-     * Adds an array of links
+     * Adds an array of links.
      * 
      * @param array $links
      */
@@ -93,7 +93,7 @@ abstract class MetaBase extends ArrayObject
     }
 
     /**
-     * Filters attribute values to trim by length
+     * Filters attribute values to trim by length.
      *
      * @param string $value
      *
@@ -103,7 +103,7 @@ abstract class MetaBase extends ArrayObject
     {
         $limit = isset(self::$characterLimits[$name]) ? self::$characterLimits[$name] : null;
 
-        if($limit && strlen($content) > $limit) {
+        if ($limit && strlen($content) > $limit) {
             $content = substr($content, 0, $limit - 3).'...';
         }
 
