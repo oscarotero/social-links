@@ -56,30 +56,7 @@ echo $page->twitter->shareCount;
 echo $page->plus->shareCount;
 ```
 
-
-## Generate social meta tags
-
-Starting from version **1.6** you can use this library to generate also the tags for opengraph, twitter cards, etc. Example:
-
-```php
-//$page is the same variable than the example above
-
-//Use magic methods (instead magic properties) to get the objects with specific metas:
-$card = $page->twitterCard();
-
-//The object is traversable:
-foreach($card as $tag) {
-    echo $tag;
-}
-
-//You can get each tag by it's name (without prefix)
-echo $card['card']; //<meta property="twitter:card" content="Summary">
-
-//Add/edit more metas
-$card->addMeta('author', '@the_author'); //<meta property="twitter:author" content="@the_autor">
-```
-
-## Providers supported
+### Providers supported
 
 Name            | Counter
 ----------------|--------
@@ -108,6 +85,36 @@ twitter         | YES
 vk              |  -
 whatsapp        |  -
 xing            | YES
+
+
+## Generate social meta tags
+
+You can use this library to generate also the tags for opengraph, twitter cards, etc. Example:
+
+```php
+//$page is the same variable than the example above
+
+//Use magic methods (instead magic properties) to get the objects with specific metas:
+$card = $page->twitterCard();
+
+//The object is traversable:
+foreach($card as $tag) {
+    echo $tag;
+}
+
+//You can get each tag by it's name (without prefix)
+echo $card['card']; //<meta property="twitter:card" content="Summary">
+
+//Add/edit more metas
+$card->addMeta('author', '@the_author'); //<meta property="twitter:author" content="@the_autor">
+```
+
+### Meta supported
+
+* html
+* openGraph
+* twitterCard
+* schema
 
 
 ## Usage in Symfony
