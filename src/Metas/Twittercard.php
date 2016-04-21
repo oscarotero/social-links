@@ -4,12 +4,12 @@ namespace SocialLinks\Metas;
 
 class Twittercard extends MetaBase implements MetaInterface
 {
-    protected $prefix = 'twitter:';
+    const META_NAME_PREFIX = 'twitter:';
 
-    protected $characterLimits = [
+    protected static $characterLimits = array(
         'title' => 65,
         'description' => 200,
-    ];
+    );
 
 
     /**
@@ -19,17 +19,11 @@ class Twittercard extends MetaBase implements MetaInterface
     {
         $this->addMeta('card', 'summary');
 
-        $data = $this->page->get(array(
+        $this->addMetas($this->page->get(array(
             'title',
             'image',
             'text' => 'description',
             'twitterUser' => 'site',
-        ));
-
-        foreach ($data as $property => $content) {
-            if (!empty($content)) {
-                $this->addMeta($property, $content);
-            }
-        }
+        )));
     }
 }

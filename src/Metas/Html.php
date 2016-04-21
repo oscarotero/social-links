@@ -4,7 +4,7 @@ namespace SocialLinks\Metas;
 
 class Html extends MetaBase implements MetaInterface
 {
-    protected $characterLimits = [
+    protected static $characterLimits = [
         'title' => 55,
         'description' => 155,
     ];
@@ -16,22 +16,14 @@ class Html extends MetaBase implements MetaInterface
     {
         $data = $this->page->get();
 
-        //<meta>
-        if (!empty($data['title'])) {
-            $this->addMeta('title', $data['title']);
-        }
+        $this->addMetas($this->page->get(array(
+            'title',
+            'text' => 'description',
+        )));
 
-        if (!empty($data['text'])) {
-            $this->addMeta('description', $data['text']);
-        }
-
-        //<link>
-        if (!empty($data['image'])) {
-            $this->addLink('image_src', $data['image']);
-        }
-
-        if (!empty($data['url'])) {
-            $this->addLink('canonical', $data['url']);
-        }
+        $this->addLinks($this->page->get(array(
+            'image' => 'image_src',
+            'url' => 'canonical',
+        )));
     }
 }

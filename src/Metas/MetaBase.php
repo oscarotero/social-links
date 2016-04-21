@@ -10,9 +10,11 @@ use ArrayObject;
  */
 abstract class MetaBase extends ArrayObject
 {
+    const META_ATTRIBUTE_NAME = 'name';
+    const META_NAME_PREFIX = '';
+
     protected $page;
-    protected $prefix;
-    protected $characterLimits = [];
+    protected static $characterLimits = array();
 
     /**
      * Constructor.
@@ -37,9 +39,9 @@ abstract class MetaBase extends ArrayObject
      */
     public function addMeta($name, $content)
     {
-        $content = $this->filterAttribute($name, $content);
+        $content = $this->trim($name, $content);
 
-        $this[$name] = '<meta name="'.$this->prefix.static::escape($name).'" content="'.static::escape($content).'">';
+        $this[$name] = '<meta '.static::META_ATTRIBUTE_NAME.'="'.static::META_NAME_PREFIX.static::escape($name).'" content="'.static::escape($content).'">';
     }
 
     /**
@@ -47,7 +49,35 @@ abstract class MetaBase extends ArrayObject
      */
     public function addLink($rel, $href)
     {
-        $this[$rel] = '<link rel="'.$this->prefix.static::escape($rel).'" href="'.static::escape($href).'">';
+        $this[$rel] = '<link rel="'.static::escape($rel).'" href="'.static::escape($href).'">';
+    }
+
+    /**
+     * Adds an array of metas
+     * 
+     * @param array $metas
+     */
+    protected function addMetas(array $metas)
+    {
+        foreach ($metas as $name => $content) {
+            if (!empty($content)) {
+                $this->addMeta($name, $content);
+            }
+        }
+    }
+
+    /**
+     * Adds an array of links
+     * 
+     * @param array $links
+     */
+    protected function addLinks(array $links)
+    {
+        foreach ($links as $rel => $href) {
+            if (!empty($href)) {
+                $this->addLink($rel, $href);
+            }
+        }
     }
 
     /**
@@ -69,12 +99,11 @@ abstract class MetaBase extends ArrayObject
      *
      * @return string
      */
-    protected function filterAttribute($name, $content)
+    protected static function trim($name, $content)
     {
-        $limit = isset($this->characterLimits[$name]) ? $this->characterLimits[$name] : null;
+        $limit = isset(self::$characterLimits[$name]) ? self::$characterLimits[$name] : null;
 
-        if($limit && strlen($content) > $limit)
-        {
+        if($limit && strlen($content) > $limit) {
             $content = substr($content, 0, $limit - 3).'...';
         }
 
