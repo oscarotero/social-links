@@ -130,6 +130,10 @@ $data = empty($_GET) ? array('url' => null, 'title' => null, 'text' => null, 'im
                 foreach ($page->twitterCard() as $tag) {
                     echo htmlspecialchars($tag)."\n";
                 }
+                echo "\n";
+                foreach ($page->schema() as $tag) {
+                    echo htmlspecialchars($tag)."\n";
+                }
             ?></code></pre>
 
         <?php endif; ?>

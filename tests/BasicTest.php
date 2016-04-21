@@ -73,9 +73,11 @@ class BasicTest extends PHPUnit_Framework_TestCase
         $twitterCard = implode('', (array) $page->twitterCard());
         $openGraph = implode('', (array) $page->openGraph());
         $html = implode('', (array) $page->html());
+        $schema = implode('', (array) $page->schema());
 
         $this->assertEquals($twitterCard, '<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Page title"><meta name="twitter:image" content="http://mypage.com/image.png"><meta name="twitter:description" content="Extended page description &amp;"><meta name="twitter:site" content="@twitterUser">');
         $this->assertEquals($openGraph, '<meta property="og:type" content="website"><meta property="og:title" content="Page title"><meta property="og:image" content="http://mypage.com/image.png"><meta property="og:url" content="http://mypage.com"><meta property="og:description" content="Extended page description &amp;">');
         $this->assertEquals($html, '<meta name="title" content="Page title"><meta name="description" content="Extended page description &amp;"><link rel="image_src" href="http://mypage.com/image.png"><link rel="canonical" href="http://mypage.com">');
+        $this->assertEquals($schema, '<meta itemprop="name" content="Page title"><meta itemprop="description" content="Extended page description &amp;"><meta itemprop="image" content="http://mypage.com/image.png">');
     }
 }
