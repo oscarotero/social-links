@@ -14,8 +14,6 @@ class Html extends MetaBase implements MetaInterface
      */
     protected function generateTags()
     {
-        $data = $this->page->get();
-
         $this->addMetas($this->page->get(array(
             'title',
             'text' => 'description',

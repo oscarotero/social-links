@@ -95,7 +95,8 @@ abstract class MetaBase extends ArrayObject
     /**
      * Filters attribute values to trim by length.
      *
-     * @param string $value
+     * @param string $name
+     * @param string $content
      *
      * @return string
      */
