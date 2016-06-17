@@ -66,6 +66,7 @@ cabozo          |  -
 chuza           | YES
 classroom       |  -
 delicious       |  -
+digg            |  -
 email           |  -
 evernote        |  -
 facebook        | YES
