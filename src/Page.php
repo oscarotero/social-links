@@ -2,6 +2,12 @@
 
 namespace SocialLinks;
 
+/**
+ * @method html()
+ * @method openGraph()
+ * @method schema()
+ * @method twitterCard()
+ */
 class Page
 {
     protected $providers = array();
