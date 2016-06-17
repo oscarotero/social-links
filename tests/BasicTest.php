@@ -55,6 +55,7 @@ class BasicTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($page->pinterest->shareUrl, 'https://www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fmypage.com&description=Page+title&media=http%3A%2F%2Fmypage.com%2Fimage.png');
         $this->assertEquals($page->plus->shareUrl, 'https://plus.google.com/share?url=http%3A%2F%2Fmypage.com');
         $this->assertEquals($page->scoopit->shareUrl, 'https://www.scoop.it/bookmarklet?url=http%3A%2F%2Fmypage.com');
+        $this->assertEquals($page->sms->shareUrl, 'sms:?&body=Page%20title%20http%3A%2F%2Fmypage.com');
         $this->assertEquals($page->stumbleupon->shareUrl, 'https://www.stumbleupon.com/submit?url=http%3A%2F%2Fmypage.com&title=Page+title');
         $this->assertEquals($page->reddit->shareUrl, 'https://www.reddit.com/submit?url=http%3A%2F%2Fmypage.com&title=Page+title');
         $this->assertEquals($page->tumblr->shareUrl, 'https://www.tumblr.com/share?v=3&u=http%3A%2F%2Fmypage.com&t=Page+title');
