@@ -92,6 +92,7 @@ $data = empty($_GET) ? array('url' => null, 'title' => null, 'text' => null, 'im
                 'plus',
                 'reddit',
                 'scoopit',
+                'sms',
                 'stumbleupon',
                 'telegram',
                 'tumblr',
