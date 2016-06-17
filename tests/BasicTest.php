@@ -43,6 +43,7 @@ class BasicTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($page->bobrdobr->shareUrl, 'http://bobrdobr.ru/addext.html?url=http%3A%2F%2Fmypage.com&title=Page+title&desc=Extended+page+description+%26');
         $this->assertEquals($page->cabozo->shareUrl, 'http://www.cabozo.com/share.php?url=http%3A%2F%2Fmypage.com');
         $this->assertEquals($page->chuza->shareUrl, 'http://chuza.gl/submit.php?url=http%3A%2F%2Fmypage.com');
+        $this->assertEquals($page->delicious->shareUrl, 'https://delicious.com/save?url=http%3A%2F%2Fmypage.com&title=Page+title');
         $this->assertEquals($page->email->shareUrl, 'mailto:?subject=Page%20title&body=Extended%20page%20description%20%26%0Ahttp%3A%2F%2Fmypage.com');
         $this->assertEquals($page->evernote->shareUrl, 'https://www.evernote.com/clip.action?url=http%3A%2F%2Fmypage.com&title=Page+title&body=Extended+page+description+%26');
         $this->assertEquals($page->facebook->shareUrl, 'https://www.facebook.com/sharer/sharer.php?display=popup&redirect_uri=http%3A%2F%2Fwww.facebook.com&u=http%3A%2F%2Fmypage.com&t=Page+title');

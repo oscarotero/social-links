@@ -65,6 +65,7 @@ bobrdobr        |  -
 cabozo          |  -
 chuza           | YES
 classroom       |  -
+delicious       |  -
 email           |  -
 evernote        |  -
 facebook        | YES
@@ -78,6 +79,7 @@ pinterest       |  -
 plus            | YES
 reddit          | YES
 scoopit         | YES
+sms             |  -
 stumbleupon     | YES
 telegram        |  -
 tumblr          |  -
