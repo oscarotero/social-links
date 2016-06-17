@@ -11,6 +11,6 @@ class Sms extends ProviderBase implements ProviderInterface
     {
         $info = $this->page->get();
 
-        return 'sms:?&amp;body='.rawurlencode($info['title'].' '.$info['url']);
+        return 'sms:?&body='.rawurlencode(trim($info['title'].' '.$info['url']));
     }
 }
