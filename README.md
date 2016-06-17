@@ -78,6 +78,7 @@ meneame         | YES
 odnoklassniki   | YES
 pinterest       |  -
 plus            | YES
+pocket          |  -
 reddit          | YES
 scoopit         | YES
 sms             |  -
