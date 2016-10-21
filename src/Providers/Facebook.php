@@ -29,13 +29,10 @@ class Facebook extends ProviderBase implements ProviderInterface
     {
         return static::request(
             $this->buildUrl(
-                'https://api.facebook.com/restserver.php',
+                'https://graph.facebook.com/',
+                array(),
                 array(
-                    'url' => 'urls[0]',
-                ),
-                array(
-                    'method' => 'links.getStats',
-                    'format' => 'json',
+                    'id' => $this->page->getUrl(),
                 )
             )
         );
@@ -48,6 +45,6 @@ class Facebook extends ProviderBase implements ProviderInterface
     {
         $count = self::jsonResponse($response);
 
-        return isset($count[0]['share_count']) ? intval($count[0]['share_count']) : 0;
+        return isset($count['share']['share_count']) ? intval($count['share']['share_count']) : 0;
     }
 }
