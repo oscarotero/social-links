@@ -30,7 +30,7 @@ class Twitter extends ProviderBase implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function shareCountRequest()
+    public function _shareCountRequest()
     {
         return static::request(
             $this->buildUrl(
@@ -43,7 +43,7 @@ class Twitter extends ProviderBase implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function shareCount($response)
+    public function _shareCount($response)
     {
         $count = static::jsonResponse($response);
 

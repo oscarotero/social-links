@@ -85,7 +85,7 @@ sms             |  -
 stumbleupon     | YES
 telegram        |  -
 tumblr          |  -
-twitter         | YES
+twitter         |  -
 vk              |  -
 whatsapp        |  -
 xing            | YES
