@@ -51,11 +51,31 @@ class Page
     }
 
     /**
+     * Magic method to check if a provider exists.
+     *
+     * @param string $key
+     *
+     * @return bool
+     */
+    public function __isset($key)
+    {
+        $key = strtolower($key);
+
+        if (isset($this->providers[$key])) {
+            return true;
+        }
+
+        $class = 'SocialLinks\\Providers\\'.ucfirst($key);
+
+        return class_exists($class);
+    }
+
+    /**
      * Magic method to instantiate and return providers in lazy mode.
      *
      * @param string $key The provider name
      *
-     * @throws Exception if the provider does not exists
+     * @throws \Exception if the provider does not exists
      *
      * @return Providers\ProviderInterface
      */
@@ -82,7 +102,7 @@ class Page
      * @param string $key       The meta collection name
      * @param array  $arguments The arguments passed to the method
      *
-     * @throws Exception if the meta does not exists
+     * @throws \Exception if the meta does not exists
      *
      * @return Metas\MetaInterface
      */
