@@ -100,6 +100,7 @@ $data = empty($_GET) ? array('url' => null, 'title' => null, 'text' => null, 'im
                 'telegram',
                 'tumblr',
                 'twitter',
+				'viadeo',
                 'vk',
                 'whatsapp',
                 'xing',
