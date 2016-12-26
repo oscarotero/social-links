@@ -10,6 +10,7 @@ namespace SocialLinks;
  */
 class Page
 {
+    protected $config = array();
     protected $providers = array();
     protected $metas = array();
     protected $info = array(
@@ -23,15 +24,17 @@ class Page
     /**
      * Constructor.
      *
-     * @param array $info The page info. Only url, title, text, image and twitterUser fields are available
+     * @param array $info   The page info. Only url, title, text, image and twitterUser fields are available
+     * @param array $config Configuration options
      */
-    public function __construct(array $info)
+    public function __construct(array $info, array $config = array())
     {
         if (array_diff_key($info, $this->info)) {
             throw new \Exception('Only the following fields are available:'.implode(',', array_keys($this->info)));
         }
 
         $this->info = array_map('static::normalize', $info + $this->info);
+        $this->config = $config;
     }
 
     /**
@@ -249,5 +252,21 @@ class Page
         }
 
         return $data;
+    }
+
+    /**
+     * Gets one or all configuration option.
+     *
+     * @param string|null $name
+     *
+     * @return string|array|null
+     */
+    public function getConfig($name = null)
+    {
+        if ($name === null) {
+            return $this->config;
+        }
+
+        return isset($this->config[$name]) ? $this->config[$name] : null;
     }
 }
