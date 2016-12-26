@@ -86,6 +86,7 @@ stumbleupon     | YES
 telegram        |  -
 tumblr          |  -
 twitter         |  -
+viadeo          |  -
 vk              |  -
 whatsapp        |  -
 xing            | YES
