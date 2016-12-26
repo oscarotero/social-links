@@ -10,10 +10,10 @@ class Viadeo extends ProviderBase implements ProviderInterface
     public function shareUrl()
     {
         return $this->buildUrl(
-            'http://www.viadeo.com/shareit/share/',
+            'https://partners.viadeo.com/share',
             array(
                 'url',
-                'title',
+                'title' => 'comment',
             )
         );
     }
