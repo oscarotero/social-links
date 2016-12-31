@@ -85,4 +85,23 @@ class BasicTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($html, '<meta name="title" content="Page title"><meta name="description" content="Extended page description &amp;"><link rel="image_src" href="http://mypage.com/image.png"><link rel="canonical" href="http://mypage.com">');
         $this->assertEquals($schema, '<meta itemprop="name" content="Page title"><meta itemprop="description" content="Extended page description &amp;"><meta itemprop="image" content="http://mypage.com/image.png">');
     }
+
+    public function testOptions()
+    {
+        $info = array(
+            'url' => 'http://example.com',
+            'title' => 'Title',
+            'text' => 'Description',
+            'image' => 'http://example.com/image.png',
+            'twitterUser' => '@example',
+        );
+
+        $page = new Page($info, array(
+            'twitter_card_type' => 'summary_large_image'
+        ));
+
+        $twitterCard = $page->twitterCard();
+
+        $this->assertEquals('<meta name="twitter:card" content="summary_large_image">', $twitterCard['card']);
+    }
 }

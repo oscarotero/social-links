@@ -257,16 +257,13 @@ class Page
     /**
      * Gets one or all configuration option.
      *
-     * @param string|null $name
+     * @param string $name
+     * @param null   $default
      *
-     * @return string|array|null
+     * @return mixed
      */
-    public function getConfig($name = null)
+    public function getConfig($name, $default = null)
     {
-        if ($name === null) {
-            return $this->config;
-        }
-
-        return isset($this->config[$name]) ? $this->config[$name] : null;
+        return isset($this->config[$name]) ? $this->config[$name] : $default;
     }
 }

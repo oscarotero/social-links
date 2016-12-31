@@ -121,6 +121,29 @@ $card->addMeta('author', '@the_author'); //<meta property="twitter:author" conte
 * twitterCard
 * schema
 
+### Options
+
+The `SocialLinks\Page` accepts an array of options as the second argument. The available options are:
+
+Name        | Type     | Description | Default
+------------|----------|-------------|---------
+twitter_card_type | `string` | The [type of card](https://dev.twitter.com/cards/types). It can be `summary`, `summary_large_image`, `app` or `player` | `"summary"`
+
+Example:
+
+```php
+$info = [
+    'url' => 'http://mypage.com',
+    'title' => 'Page title',
+    'text' => 'Extended page description',
+    'image' => 'http://mypage.com/image.png',
+    'twitterUser' => '@twitterUser'
+];
+
+$page = new Page($info, [
+	'twitter_card_type' => 'summary_large_image'
+]);
+```
 
 ## Usage in Symfony
 

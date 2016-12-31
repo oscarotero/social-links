@@ -16,7 +16,7 @@ class Twittercard extends MetaBase implements MetaInterface
      */
     protected function generateTags()
     {
-        $this->addMeta('card', 'summary');
+        $this->addMeta('card', $this->page->getConfig('twitter_card_type', 'summary'));
 
         $this->addMetas($this->page->get(array(
             'title',
