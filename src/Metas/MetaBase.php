@@ -102,7 +102,7 @@ abstract class MetaBase extends ArrayObject
      */
     protected static function trim($name, $content)
     {
-        $limit = isset(self::$characterLimits[$name]) ? self::$characterLimits[$name] : null;
+        $limit = isset(static::$characterLimits[$name]) ? static::$characterLimits[$name] : null;
 
         if ($limit && strlen($content) > $limit) {
             $content = substr($content, 0, $limit - 3).'...';
