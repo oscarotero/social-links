@@ -42,17 +42,17 @@ printf($link, $page->stumbleupon->shareUrl, 'Share StumbleUpon', $page->stumbleu
 
 ## Preload share counters
 
-When you use, for example `$page->facebook->shareCount`, a request to facebook API is executed. This means that if you need also `$page->twitter->shareCount` and `$page->plus->shareCount`, three requests are required. To improve performance, you can execute all these requests in parallel. Example:
+When you use, for example `$page->facebook->shareCount`, a request to facebook API is executed. This means that if you need also `$page->linkedin->shareCount` and `$page->plus->shareCount`, three requests are required. To improve performance, you can execute all these requests in parallel. Example:
 
 ```php
 $page = newPage(['url' => 'http://page.com']);
 
 //Preload the counters
-$page->shareCount(['twitter', 'facebook', 'plus']);
+$page->shareCount(['linkedin', 'facebook', 'plus']);
 
 //Use them
 echo $page->facebook->shareCount;
-echo $page->twitter->shareCount;
+echo $page->linkedin->shareCount;
 echo $page->plus->shareCount;
 ```
 
