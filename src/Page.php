@@ -18,13 +18,14 @@ class Page
         'title' => null,
         'text' => null,
         'image' => null,
+        'icon' => null,
         'twitterUser' => null,
     );
 
     /**
      * Constructor.
      *
-     * @param array $info   The page info. Only url, title, text, image and twitterUser fields are available
+     * @param array $info   The page info. Only url, title, text, image, icon and twitterUser fields are available
      * @param array $config Configuration options
      */
     public function __construct(array $info, array $config = array())
@@ -34,6 +35,7 @@ class Page
         }
 
         $this->info = array_map('static::normalize', $info + $this->info);
+
         $this->config = $config;
     }
 
@@ -212,6 +214,16 @@ class Page
     public function getImage()
     {
         return $this->info['image'];
+    }
+
+    /**
+     * Gets the page icon.
+     *
+     * @return array|null
+     */
+    public function getIcon()
+    {
+        return $this->info['icon'];
     }
 
     /**

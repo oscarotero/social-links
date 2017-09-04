@@ -28,6 +28,26 @@ abstract class MetaBase extends ArrayObject
     }
 
     /**
+     * Convert all tags to html
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        $html = [];
+
+        foreach ($this as $tag) {
+            if (is_array($tag)) {
+                $html = array_merge($html, $tag);
+            } else {
+                $html[] = $tag;
+            }
+        }
+
+        return implode("\n", $html);
+    }
+
+    /**
      * Generate all tags.
      *
      * @return array
@@ -39,9 +59,17 @@ abstract class MetaBase extends ArrayObject
      */
     public function addMeta($name, $content)
     {
-        $content = $this->trim($name, $content);
+        if (is_array($content)) {
+            $content = array_map(function ($content) use ($name) {
+                return static::getHtmlMeta($name, $content);
+            }, array_filter($content));
+        } elseif (!empty($content)) {
+            $content = static::getHtmlMeta($name, $content);
+        } else {
+            return;
+        }
 
-        $this[$name] = '<meta '.static::META_ATTRIBUTE_NAME.'="'.static::META_NAME_PREFIX.static::escape($name).'" content="'.static::escape($content).'">';
+        $this[$name] = $content;
     }
 
     /**
@@ -49,7 +77,17 @@ abstract class MetaBase extends ArrayObject
      */
     public function addLink($rel, $href)
     {
-        $this[$rel] = '<link rel="'.static::escape($rel).'" href="'.static::escape($href).'">';
+        if (is_array($href)) {
+            $href = array_map(function ($href) use ($rel) {
+                return static::getHtmlLink($rel, $href);
+            }, array_filter($href));
+        } elseif (!empty($href)) {
+            $href = static::getHtmlLink($rel, $href);
+        } else {
+            return;
+        }
+
+        $this[$rel] = $href;
     }
 
     /**
@@ -90,6 +128,30 @@ abstract class MetaBase extends ArrayObject
     protected static function escape($value)
     {
         return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+    }
+
+    /**
+     * Generates the html code of a link
+     *
+     * @param string $rel
+     * @param string $href
+     */
+    protected static function getHtmlLink($rel, $href)
+    {
+        return '<link rel="'.static::escape($rel).'" href="'.static::escape($href).'">';
+    }
+
+    /**
+     * Generates the html code of a meta
+     *
+     * @param string $name
+     * @param string $content
+     */
+    protected static function getHtmlMeta($name, $content)
+    {
+        $content = static::trim($name, $content);
+
+        return '<meta '.static::META_ATTRIBUTE_NAME.'="'.static::META_NAME_PREFIX.static::escape($name).'" content="'.static::escape($content).'">';
     }
 
     /**

@@ -12,8 +12,8 @@ interface MetaInterface extends IteratorAggregate, ArrayAccess, Serializable, Co
     /**
      * Add a meta tag.
      *
-     * @param string $property
-     * @param string $content
+     * @param string       $property
+     * @param string|array $content
      *
      * @return self
      */
@@ -22,8 +22,8 @@ interface MetaInterface extends IteratorAggregate, ArrayAccess, Serializable, Co
     /**
      * Generate a link tag.
      *
-     * @param string $rel
-     * @param string $href
+     * @param string       $rel
+     * @param string|array $href
      *
      * @return string
      */

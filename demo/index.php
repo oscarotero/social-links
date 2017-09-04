@@ -3,7 +3,7 @@ require dirname(__DIR__).'/src/autoloader.php';
 
 use SocialLinks\Page;
 
-$data = empty($_GET) ? array('url' => null, 'title' => null, 'text' => null, 'image' => null, 'twitterUser' => null) : $_GET;
+$data = empty($_GET) ? array('url' => null, 'title' => null, 'text' => null, 'image' => null, 'icon' => null, 'twitterUser' => null) : $_GET;
 ?>
 
 <!DOCTYPE html>
@@ -124,21 +124,10 @@ $data = empty($_GET) ? array('url' => null, 'title' => null, 'text' => null, 'im
             </table>
 
             <pre><code><?php
-                foreach ($page->html() as $tag) {
-                    echo htmlspecialchars($tag)."\n";
-                }
-                echo "\n";
-                foreach ($page->openGraph() as $tag) {
-                    echo htmlspecialchars($tag)."\n";
-                }
-                echo "\n";
-                foreach ($page->twitterCard() as $tag) {
-                    echo htmlspecialchars($tag)."\n";
-                }
-                echo "\n";
-                foreach ($page->schema() as $tag) {
-                    echo htmlspecialchars($tag)."\n";
-                }
+                echo htmlspecialchars($page->html())."\n\n";
+                echo htmlspecialchars($page->openGraph())."\n\n";
+                echo htmlspecialchars($page->twitterCard())."\n\n";
+                echo htmlspecialchars($page->schema());
             ?></code></pre>
 
         <?php endif; ?>
@@ -155,6 +144,9 @@ $data = empty($_GET) ? array('url' => null, 'title' => null, 'text' => null, 'im
             </label>
             <label>
                 <strong>Image: </strong><input type="url" name="image" value="<?php echo $data['image']; ?>">
+            </label>
+            <label>
+                <strong>Icon: </strong><input type="url" name="icon" value="<?php echo $data['icon']; ?>">
             </label>
             <label>
                 <strong>Twitter user: </strong><input type="text" name="twitterUser" value="<?php echo $data['twitterUser']; ?>">

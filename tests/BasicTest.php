@@ -12,6 +12,7 @@ class BasicTest extends PHPUnit_Framework_TestCase
             'text' => 'Extended <strong>page description</strong> &amp; ',
             'image' => 'http://mypage.com/image.png',
             'twitterUser' => '@twitterUser',
+            'icon' => 'http://mypage.com/favicon.png'
         );
 
         $infoNormalized = array(
@@ -20,6 +21,7 @@ class BasicTest extends PHPUnit_Framework_TestCase
             'text' => 'Extended page description &',
             'image' => 'http://mypage.com/image.png',
             'twitterUser' => '@twitterUser',
+            'icon' => 'http://mypage.com/favicon.png'
         );
 
         $page = new Page($info);
@@ -75,15 +77,41 @@ class BasicTest extends PHPUnit_Framework_TestCase
      */
     public function testMetas(Page $page)
     {
-        $twitterCard = implode('', (array) $page->twitterCard());
-        $openGraph = implode('', (array) $page->openGraph());
-        $html = implode('', (array) $page->html());
-        $schema = implode('', (array) $page->schema());
+        $twitterCard = (string) $page->twitterCard();
+        $openGraph = (string) $page->openGraph();
+        $html = (string) $page->html();
+        $schema = (string) $page->schema();
 
-        $this->assertEquals($twitterCard, '<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Page title"><meta name="twitter:image" content="http://mypage.com/image.png"><meta name="twitter:description" content="Extended page description &amp;"><meta name="twitter:site" content="@twitterUser">');
-        $this->assertEquals($openGraph, '<meta property="og:type" content="website"><meta property="og:title" content="Page title"><meta property="og:image" content="http://mypage.com/image.png"><meta property="og:url" content="http://mypage.com"><meta property="og:description" content="Extended page description &amp;">');
-        $this->assertEquals($html, '<meta name="title" content="Page title"><meta name="description" content="Extended page description &amp;"><link rel="image_src" href="http://mypage.com/image.png"><link rel="canonical" href="http://mypage.com">');
-        $this->assertEquals($schema, '<meta itemprop="name" content="Page title"><meta itemprop="description" content="Extended page description &amp;"><meta itemprop="image" content="http://mypage.com/image.png">');
+        $this->assertEquals($twitterCard, <<<EOT
+<meta name="twitter:title" content="Page title">
+<meta name="twitter:description" content="Extended page description &amp;">
+<meta name="twitter:site" content="@twitterUser">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://mypage.com/image.png">
+EOT
+);
+        $this->assertEquals($openGraph, <<<EOT
+<meta property="og:type" content="website">
+<meta property="og:title" content="Page title">
+<meta property="og:url" content="http://mypage.com">
+<meta property="og:description" content="Extended page description &amp;">
+<meta property="og:image" content="http://mypage.com/image.png">
+<meta property="og:image" content="http://mypage.com/favicon.png">
+EOT
+);
+        $this->assertEquals($html, <<<EOT
+<meta name="title" content="Page title">
+<meta name="description" content="Extended page description &amp;">
+<link rel="image_src" href="http://mypage.com/image.png">
+<link rel="canonical" href="http://mypage.com">
+EOT
+);
+        $this->assertEquals($schema, <<<EOT
+<meta itemprop="name" content="Page title">
+<meta itemprop="description" content="Extended page description &amp;">
+<meta itemprop="image" content="http://mypage.com/image.png">
+EOT
+);
     }
 
     public function testOptions()

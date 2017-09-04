@@ -21,9 +21,19 @@ class Opengraph extends MetaBase implements MetaInterface
 
         $this->addMetas($this->page->get(array(
             'title',
-            'image',
             'url',
             'text' => 'description',
         )));
+
+        $images = array_filter($this->page->get(array(
+            'image',
+            'icon'
+        )));
+
+        if (count($images) === 1) {
+            $this->addMeta('image', array_shift($images));
+        } else {
+            $this->addMeta('image', $images);
+        }
     }
 }

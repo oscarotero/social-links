@@ -16,13 +16,18 @@ class Twittercard extends MetaBase implements MetaInterface
      */
     protected function generateTags()
     {
-        $this->addMeta('card', $this->page->getConfig('twitter_card_type', 'summary'));
-
         $this->addMetas($this->page->get(array(
             'title',
-            'image',
             'text' => 'description',
             'twitterUser' => 'site',
         )));
+
+        if ($this->page->getImage()) {
+            $this->addMeta('card', 'summary_large_image');
+            $this->addMeta('image', $this->page->getImage());
+        } else {
+            $this->addMeta('card', 'summary');
+            $this->addMeta('image', $this->page->getIcon());
+        }
     }
 }
