@@ -2,6 +2,8 @@
 
 namespace SocialLinks;
 
+use Doctrine\Common\Cache\Cache;
+
 /**
  * @method html()
  * @method openGraph()
@@ -10,7 +12,11 @@ namespace SocialLinks;
  */
 class Page
 {
-    protected $config = array();
+    private $cache;
+    protected $config = array(
+        'useCache' => TRUE,
+        'cacheDuration' => 3600,
+    );
     protected $providers = array();
     protected $metas = array();
     protected $info = array(
@@ -28,7 +34,7 @@ class Page
      * @param array $info   The page info. Only url, title, text, image, icon and twitterUser fields are available
      * @param array $config Configuration options
      */
-    public function __construct(array $info, array $config = array())
+    public function __construct(array $info, array $config = array(), Cache $cache)
     {
         if (array_diff_key($info, $this->info)) {
             throw new \Exception('Only the following fields are available:'.implode(',', array_keys($this->info)));
@@ -37,6 +43,7 @@ class Page
         $this->info = array_map('static::normalize', $info + $this->info);
 
         $this->config = $config;
+        $this->cache = $cache;
     }
 
     /**
@@ -135,14 +142,26 @@ class Page
      */
     public function shareCount(array $providers)
     {
-        if (count($providers) < 2) {
-            return;
-        }
+        $providers = $providers ?: array_keys($this->providers);
 
         $connections = array();
         $curl = curl_multi_init();
+        $now = new \DateTime();
 
         foreach ($providers as $provider) {
+
+            // Check cache, if option is set.
+            if ($this->config['useCache']) {
+                $id = $this->getId($provider, $url);
+                if ($cachedData = $this->cache->fetch($id)) {
+                    $expired = isset($cachedData[1]) && $cachedData[1]->add($this->config['cacheDuration']) < $now;
+                    if ($expired) {
+                        $this->$provider->shareCount = $cachedData[0];
+                        continue;
+                    }
+                }
+            }
+
             $request = $this->$provider->shareCountRequest();
 
             if ($request !== null) {
@@ -171,9 +190,34 @@ class Page
             $this->$provider->shareCount = $this->$provider->shareCount(curl_multi_getcontent($request));
 
             curl_multi_remove_handle($curl, $request);
+
+            // Cache count.
+            $id = $this->getId($provider, $url);
+            $this->cache->save($id, array($this->$provider->shareCount, $now));
         }
 
         curl_multi_close($curl);
+    }
+
+    /**
+     * Gets the total number of shares for a given URL across given providers.
+     *
+     * @param string $url
+     *
+     * @throws \RuntimeException
+     *
+     * @return int
+     */
+    public function getShareCountTotal($url, array $providers = array())
+    {
+        $providers = $providers ?: array_keys($this->providers);
+        $this->shareCount($shareCountTotal);
+
+        $shareCountTotal = 0;
+        foreach ($providers as $provider) {
+            $shareCountTotal += $this->$provider->shareCount;
+        }
+        return $shares;
     }
 
     /**
@@ -277,5 +321,18 @@ class Page
     public function getConfig($name, $default = null)
     {
         return isset($this->config[$name]) ? $this->config[$name] : $default;
+    }
+
+    /**
+     * Gets the ID for this provider and URL.
+     *
+     * @param string $provider
+     * @param string $url
+     *
+     * @return string
+     */
+    private function getId($provider, $url)
+    {
+        return sprintf('%s_%s', $provider, $url);
     }
 }
