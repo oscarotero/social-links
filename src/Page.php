@@ -3,6 +3,7 @@
 namespace SocialLinks;
 
 use Doctrine\Common\Cache\Cache;
+use Doctrine\Common\Cache\PhpFileCache;
 
 /**
  * @method html()
@@ -33,16 +34,19 @@ class Page
      *
      * @param array $info   The page info. Only url, title, text, image, icon and twitterUser fields are available
      * @param array $config Configuration options
+     * @param Cache $cache Doctrine Cache instance, defaults to a new PhpFileCache
      */
-    public function __construct(array $info, array $config = array(), Cache $cache)
+    public function __construct(array $info, array $config = array(), Cache $cache = NULL)
     {
+        $cache = $cache ?: new PhpFileCache(sys_get_temp_dir());
+
         if (array_diff_key($info, $this->info)) {
             throw new \Exception('Only the following fields are available:'.implode(',', array_keys($this->info)));
         }
 
         $this->info = array_map('static::normalize', $info + $this->info);
 
-        $this->config = $config;
+        $this->config = array_map('static::normalize', $config + $this->config);
         $this->cache = $cache;
     }
 
