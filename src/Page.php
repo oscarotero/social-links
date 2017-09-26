@@ -251,6 +251,16 @@ class Page
     }
 
     /**
+     * Gets the page url.
+     *
+     * @return array|null
+     */
+    public function getUrls()
+    {
+        return $this->info['urls'];
+    }
+
+    /**
      * Gets the page title.
      *
      * @return string|null
@@ -363,5 +373,15 @@ class Page
     public function getId($provider)
     {
         return sprintf('%s_%s', $provider, $this->info['url']);
+    }
+
+    /**
+     * Checks if there are multiple URLs.
+     *
+     * @return bool
+     */
+    public function isMultiple()
+    {
+        return !empty($this->getUrls());
     }
 }
