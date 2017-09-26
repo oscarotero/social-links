@@ -154,7 +154,7 @@ class Page
     /**
      * Preload the counter.
      *
-     * @param array $providers
+     * @param array $providers Array of providers - defaults to all.
      */
     public function shareCount(array $providers)
     {

@@ -138,6 +138,8 @@ abstract class ProviderBase
      * @param array  $pageParams parameters to be taken from page fields as $paramName  => $paramNameInTheURL
      * @param array  $getParams  extra parameters as $key => $value
      * @param int    $encoding   Type of encoding used. It can be static::RFC3986 or static::RFC1738
+     *
+     * @return string
      */
     protected function buildUrl($url, array $pageParams = null, array $getParams = array(), $encoding = self::RFC1738)
     {
