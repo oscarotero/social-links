@@ -161,9 +161,9 @@ class Page
             // Check cache, if option is set.
             if ($this->getConfig('useCache')) {
                 $id = $this->getId($provider);
-                if ($cachedData = $this->page->cache->fetch($id)) {
+                if ($cachedData = $this->cache->fetch($id)) {
                     $expired = empty($cachedData[1]) || (
-                        $cachedData[1] + $this->page->getConfig('cacheDuration') < $now
+                        $cachedData[1] + $this->getConfig('cacheDuration') < $now
                     );
 
                     // If not expired, set shareCount and return.
