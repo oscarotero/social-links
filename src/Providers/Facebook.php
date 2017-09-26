@@ -47,4 +47,32 @@ class Facebook extends ProviderBase implements ProviderInterface
 
         return isset($count['share']['share_count']) ? intval($count['share']['share_count']) : 0;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function shareCountRequestMultiple()
+    {
+        return static::request(
+            $this->buildUrl(
+                'https://graph.facebook.com/',
+                array(),
+                array(
+                    'ids' => implode(',', $this->page->getUrls())
+                )
+            )
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function shareCountMultiple($response)
+    {
+        $count_array = self::jsonResponse($response);
+
+        return array_map(function ($count) {
+            return isset($count['share']['share_count']) ? intval($count['share']['share_count']) : 0;
+        }, $count_array);
+    }
 }
