@@ -182,7 +182,12 @@ class Page
                 }
             }
 
-            $request = $this->$provider->shareCountRequest();
+            if ($this->isMultiple()) {
+                $request = $this->$provider->shareCountRequestMultiple();
+            }
+            else {
+                $request = $this->$provider->shareCountRequest();
+            }
 
             if ($request !== null) {
                 $connections[$provider] = $request;
@@ -207,7 +212,12 @@ class Page
         }
 
         foreach ($connections as $provider => $request) {
-            $this->$provider->shareCount = $this->$provider->shareCount(curl_multi_getcontent($request));
+            if ($this->isMultiple()) {
+                $this->$provider->shareCount = $this->$provider->shareCountMultiple(curl_multi_getcontent($request));
+            }
+            else {
+                $this->$provider->shareCount = $this->$provider->shareCount(curl_multi_getcontent($request));
+            }
 
             curl_multi_remove_handle($curl, $request);
 
@@ -235,7 +245,12 @@ class Page
 
         $shareCountTotal = 0;
         foreach ($providers as $provider) {
-            $shareCountTotal += $this->$provider->shareCount;
+            if ($this->isMultiple()) {
+                $shareCountTotal += array_sum($this->$provider->shareCount);
+            }
+            else {
+                $shareCountTotal += $this->$provider->shareCount;
+            }
         }
         return $shareCountTotal;
     }

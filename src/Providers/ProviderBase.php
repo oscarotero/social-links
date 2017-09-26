@@ -60,13 +60,23 @@ abstract class ProviderBase
                     }
                 }
 
-                $request = $this->shareCountRequest();
+                if ($this->page->isMultiple()) {
+                    $request = $this->shareCountRequestMultiple();
+                }
+                else {
+                    $request = $this->shareCountRequest();
+                }
 
                 if ($request !== null) {
                     $response = curl_exec($request) ?: '';
                     curl_close($request);
 
-                    $this->shareCount = $this->shareCount($response);
+                    if ($this->page->isMultiple()) {
+                        $this->shareCount = $this->shareCountMultiple($response);
+                    }
+                    else {
+                        $this->shareCount = $this->shareCount($response);
+                    }
 
                     // Save in cache, if option is set.
                     if ($this->page->getConfig('useCache')) {
