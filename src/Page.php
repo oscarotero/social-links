@@ -22,6 +22,7 @@ class Page
     protected $metas = array();
     protected $info = array(
         'url' => null,
+        'urls' => array(),
         'title' => null,
         'text' => null,
         'image' => null,
@@ -63,7 +64,14 @@ class Page
      */
     protected static function normalize($value)
     {
-        return trim(strip_tags(htmlspecialchars_decode(preg_replace('/\s+/', ' ', $value))));
+        if (is_array($value)) {
+            return array_map(function ($v) {
+                return trim(strip_tags(htmlspecialchars_decode(preg_replace('/\s+/', ' ', $v))));
+            }, $value);
+        }
+        else {
+            return trim(strip_tags(htmlspecialchars_decode(preg_replace('/\s+/', ' ', $value))));
+        }
     }
 
     /**
