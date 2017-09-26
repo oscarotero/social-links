@@ -101,6 +101,27 @@ abstract class ProviderBase
     }
 
     /**
+     * Default shareCountMultiple function for providers without count api.
+     *
+     * {@inheritdoc}
+     */
+    public function shareCountMultiple($response)
+    {
+        return;
+    }
+
+    /**
+     * Default shareCountRequestMultiple function for providers without
+     * count api.
+     *
+     * {@inheritdoc}
+     */
+    public function shareCountRequestMultiple()
+    {
+        return;
+    }
+
+    /**
      * Generates a valid url.
      *
      * @param string $url

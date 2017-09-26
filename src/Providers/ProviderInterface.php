@@ -26,4 +26,20 @@ interface ProviderInterface
      * @return resource|null
      */
     public function shareCountRequest();
+
+    /**
+     * Returns the share count for multiple URLs.
+     *
+     * @param string $response Request response body
+     *
+     * @return array|null
+     */
+    public function shareCountMultiple($response);
+
+    /**
+     * Returns a curl resource used to count shares for multiple URLs.
+     *
+     * @return resource|null
+     */
+    public function shareCountRequestMultiple();
 }
