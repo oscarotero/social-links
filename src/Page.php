@@ -97,6 +97,10 @@ class Page
      */
     public function __get($key)
     {
+        if ($key == 'cache') {
+            return $this->cache;
+        }
+
         $key = strtolower($key);
 
         if (isset($this->providers[$key])) {
@@ -150,16 +154,20 @@ class Page
 
         $connections = array();
         $curl = curl_multi_init();
-        $now = new \DateTime();
+        $now = time();
 
         foreach ($providers as $provider) {
 
             // Check cache, if option is set.
-            if ($this->config['useCache']) {
-                $id = $this->getId($provider, $url);
-                if ($cachedData = $this->cache->fetch($id)) {
-                    $expired = isset($cachedData[1]) && $cachedData[1]->add($this->config['cacheDuration']) < $now;
-                    if ($expired) {
+            if ($this->getConfig('useCache')) {
+                $id = $this->getId($provider);
+                if ($cachedData = $this->page->cache->fetch($id)) {
+                    $expired = empty($cachedData[1]) || (
+                        $cachedData[1] + $this->page->getConfig('cacheDuration') < $now
+                    );
+
+                    // If not expired, set shareCount and return.
+                    if (!$expired) {
                         $this->$provider->shareCount = $cachedData[0];
                         continue;
                     }
@@ -196,7 +204,7 @@ class Page
             curl_multi_remove_handle($curl, $request);
 
             // Cache count.
-            $id = $this->getId($provider, $url);
+            $id = $this->getId($provider);
             $this->cache->save($id, array($this->$provider->shareCount, $now));
         }
 
@@ -206,22 +214,22 @@ class Page
     /**
      * Gets the total number of shares for a given URL across given providers.
      *
-     * @param string $url
+     * @param array $providers
      *
      * @throws \RuntimeException
      *
      * @return int
      */
-    public function getShareCountTotal($url, array $providers = array())
+    public function getShareCountTotal(array $providers = array())
     {
         $providers = $providers ?: array_keys($this->providers);
-        $this->shareCount($shareCountTotal);
+        $this->shareCount($providers);
 
         $shareCountTotal = 0;
         foreach ($providers as $provider) {
             $shareCountTotal += $this->$provider->shareCount;
         }
-        return $shares;
+        return $shareCountTotal;
     }
 
     /**
@@ -328,15 +336,24 @@ class Page
     }
 
     /**
+     * Gets cache.
+     *
+     * @return object
+     */
+    public function getCache()
+    {
+        return $this->cache;
+    }
+
+    /**
      * Gets the ID for this provider and URL.
      *
      * @param string $provider
-     * @param string $url
      *
      * @return string
      */
-    private function getId($provider, $url)
+    public function getId($provider)
     {
-        return sprintf('%s_%s', $provider, $url);
+        return sprintf('%s_%s', $provider, $this->info['url']);
     }
 }

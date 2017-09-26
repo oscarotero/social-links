@@ -38,13 +38,42 @@ abstract class ProviderBase
                 return $this->shareUrl = $this->shareUrl();
 
             case 'shareCount':
+
+                // Check cache, if option is set.
+                if ($this->page->getConfig('useCache')) {
+                    $id = $this->page->getId(get_class($this));
+                    $now = time();
+                    if ($cachedData = $this->page->cache->fetch($id)) {
+                        $expired = empty($cachedData[1]) || (
+                            $cachedData[1] + $this->page->getConfig('cacheDuration') < $now
+                        );
+
+                        // If not expired, set shareCount and return.
+                        if (!$expired) {
+                            $this->shareCount = $cachedData[0];
+                            return $this->shareCount;
+                        }
+                        // Else, remove from cache and continue.
+                        else {
+                            $this->page->cache->delete($id);
+                        }
+                    }
+                }
+
                 $request = $this->shareCountRequest();
 
                 if ($request !== null) {
                     $response = curl_exec($request) ?: '';
                     curl_close($request);
 
-                    return $this->shareCount = $this->shareCount($response);
+                    $this->shareCount = $this->shareCount($response);
+
+                    // Save in cache, if option is set.
+                    if ($this->page->getConfig('useCache')) {
+                        $this->page->cache->save($id, array($this->shareCount, $now));
+                    }
+
+                    return $this->shareCount;
                 }
 
                 return $this->shareCount = null;
