@@ -2,6 +2,9 @@
 
 namespace SocialLinks;
 
+use Doctrine\Common\Cache\Cache;
+use Doctrine\Common\Cache\PhpFileCache;
+
 /**
  * @method html()
  * @method openGraph()
@@ -10,11 +13,16 @@ namespace SocialLinks;
  */
 class Page
 {
-    protected $config = array();
+    private $cache;
+    protected $config = array(
+        'useCache' => TRUE,
+        'cacheDuration' => 3600,
+    );
     protected $providers = array();
     protected $metas = array();
     protected $info = array(
         'url' => null,
+        'urls' => array(),
         'title' => null,
         'text' => null,
         'image' => null,
@@ -27,16 +35,20 @@ class Page
      *
      * @param array $info   The page info. Only url, title, text, image, icon and twitterUser fields are available
      * @param array $config Configuration options
+     * @param Cache $cache Doctrine Cache instance, defaults to a new PhpFileCache
      */
-    public function __construct(array $info, array $config = array())
+    public function __construct(array $info, array $config = array(), Cache $cache = NULL)
     {
+        $cache = $cache ?: new PhpFileCache(sys_get_temp_dir());
+
         if (array_diff_key($info, $this->info)) {
             throw new \Exception('Only the following fields are available:'.implode(',', array_keys($this->info)));
         }
 
         $this->info = array_map('static::normalize', $info + $this->info);
 
-        $this->config = $config;
+        $this->config = array_map('static::normalize', $config + $this->config);
+        $this->cache = $cache;
     }
 
     /**
@@ -52,7 +64,14 @@ class Page
      */
     protected static function normalize($value)
     {
-        return trim(strip_tags(htmlspecialchars_decode(preg_replace('/\s+/', ' ', $value))));
+        if (is_array($value)) {
+            return array_map(function ($v) {
+                return trim(strip_tags(htmlspecialchars_decode(preg_replace('/\s+/', ' ', $v))));
+            }, $value);
+        }
+        else {
+            return trim(strip_tags(htmlspecialchars_decode(preg_replace('/\s+/', ' ', $value))));
+        }
     }
 
     /**
@@ -86,6 +105,10 @@ class Page
      */
     public function __get($key)
     {
+        if ($key == 'cache') {
+            return $this->cache;
+        }
+
         $key = strtolower($key);
 
         if (isset($this->providers[$key])) {
@@ -131,19 +154,40 @@ class Page
     /**
      * Preload the counter.
      *
-     * @param array $providers
+     * @param array $providers Array of providers - defaults to all.
      */
     public function shareCount(array $providers)
     {
-        if (count($providers) < 2) {
-            return;
-        }
+        $providers = $providers ?: array_keys($this->providers);
 
         $connections = array();
         $curl = curl_multi_init();
+        $now = time();
 
         foreach ($providers as $provider) {
-            $request = $this->$provider->shareCountRequest();
+
+            // Check cache, if option is set.
+            if ($this->getConfig('useCache')) {
+                $id = $this->getId($provider);
+                if ($cachedData = $this->cache->fetch($id)) {
+                    $expired = empty($cachedData[1]) || (
+                        $cachedData[1] + $this->getConfig('cacheDuration') < $now
+                    );
+
+                    // If not expired, set shareCount and return.
+                    if (!$expired) {
+                        $this->$provider->shareCount = $cachedData[0];
+                        continue;
+                    }
+                }
+            }
+
+            if ($this->isMultiple()) {
+                $request = $this->$provider->shareCountRequestMultiple();
+            }
+            else {
+                $request = $this->$provider->shareCountRequest();
+            }
 
             if ($request !== null) {
                 $connections[$provider] = $request;
@@ -168,12 +212,47 @@ class Page
         }
 
         foreach ($connections as $provider => $request) {
-            $this->$provider->shareCount = $this->$provider->shareCount(curl_multi_getcontent($request));
+            if ($this->isMultiple()) {
+                $this->$provider->shareCount = $this->$provider->shareCountMultiple(curl_multi_getcontent($request));
+            }
+            else {
+                $this->$provider->shareCount = $this->$provider->shareCount(curl_multi_getcontent($request));
+            }
 
             curl_multi_remove_handle($curl, $request);
+
+            // Cache count.
+            $id = $this->getId($provider);
+            $this->cache->save($id, array($this->$provider->shareCount, $now));
         }
 
         curl_multi_close($curl);
+    }
+
+    /**
+     * Gets the total number of shares for a given URL across given providers.
+     *
+     * @param array $providers
+     *
+     * @throws \RuntimeException
+     *
+     * @return int
+     */
+    public function getShareCountTotal(array $providers = array())
+    {
+        $providers = $providers ?: array_keys($this->providers);
+        $this->shareCount($providers);
+
+        $shareCountTotal = 0;
+        foreach ($providers as $provider) {
+            if ($this->isMultiple()) {
+                $shareCountTotal += array_sum($this->$provider->shareCount);
+            }
+            else {
+                $shareCountTotal += $this->$provider->shareCount;
+            }
+        }
+        return $shareCountTotal;
     }
 
     /**
@@ -184,6 +263,16 @@ class Page
     public function getUrl()
     {
         return $this->info['url'];
+    }
+
+    /**
+     * Gets the page url.
+     *
+     * @return array|null
+     */
+    public function getUrls()
+    {
+        return $this->info['urls'];
     }
 
     /**
@@ -277,5 +366,37 @@ class Page
     public function getConfig($name, $default = null)
     {
         return isset($this->config[$name]) ? $this->config[$name] : $default;
+    }
+
+    /**
+     * Gets cache.
+     *
+     * @return object
+     */
+    public function getCache()
+    {
+        return $this->cache;
+    }
+
+    /**
+     * Gets the ID for this provider and URL.
+     *
+     * @param string $provider
+     *
+     * @return string
+     */
+    public function getId($provider)
+    {
+        return sprintf('%s_%s', $provider, $this->info['url']);
+    }
+
+    /**
+     * Checks if there are multiple URLs.
+     *
+     * @return bool
+     */
+    public function isMultiple()
+    {
+        return !empty($this->getUrls());
     }
 }

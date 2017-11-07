@@ -38,13 +38,52 @@ abstract class ProviderBase
                 return $this->shareUrl = $this->shareUrl();
 
             case 'shareCount':
-                $request = $this->shareCountRequest();
+
+                // Check cache, if option is set.
+                if ($this->page->getConfig('useCache')) {
+                    $id = $this->page->getId(get_class($this));
+                    $now = time();
+                    if ($cachedData = $this->page->cache->fetch($id)) {
+                        $expired = empty($cachedData[1]) || (
+                            $cachedData[1] + $this->page->getConfig('cacheDuration') < $now
+                        );
+
+                        // If not expired, set shareCount and return.
+                        if (!$expired) {
+                            $this->shareCount = $cachedData[0];
+                            return $this->shareCount;
+                        }
+                        // Else, remove from cache and continue.
+                        else {
+                            $this->page->cache->delete($id);
+                        }
+                    }
+                }
+
+                if ($this->page->isMultiple()) {
+                    $request = $this->shareCountRequestMultiple();
+                }
+                else {
+                    $request = $this->shareCountRequest();
+                }
 
                 if ($request !== null) {
                     $response = curl_exec($request) ?: '';
                     curl_close($request);
 
-                    return $this->shareCount = $this->shareCount($response);
+                    if ($this->page->isMultiple()) {
+                        $this->shareCount = $this->shareCountMultiple($response);
+                    }
+                    else {
+                        $this->shareCount = $this->shareCount($response);
+                    }
+
+                    // Save in cache, if option is set.
+                    if ($this->page->getConfig('useCache')) {
+                        $this->page->cache->save($id, array($this->shareCount, $now));
+                    }
+
+                    return $this->shareCount;
                 }
 
                 return $this->shareCount = null;
@@ -72,12 +111,35 @@ abstract class ProviderBase
     }
 
     /**
+     * Default shareCountMultiple function for providers without count api.
+     *
+     * {@inheritdoc}
+     */
+    public function shareCountMultiple($response)
+    {
+        return;
+    }
+
+    /**
+     * Default shareCountRequestMultiple function for providers without
+     * count api.
+     *
+     * {@inheritdoc}
+     */
+    public function shareCountRequestMultiple()
+    {
+        return;
+    }
+
+    /**
      * Generates a valid url.
      *
      * @param string $url
      * @param array  $pageParams parameters to be taken from page fields as $paramName  => $paramNameInTheURL
      * @param array  $getParams  extra parameters as $key => $value
      * @param int    $encoding   Type of encoding used. It can be static::RFC3986 or static::RFC1738
+     *
+     * @return string
      */
     protected function buildUrl($url, array $pageParams = null, array $getParams = array(), $encoding = self::RFC1738)
     {
