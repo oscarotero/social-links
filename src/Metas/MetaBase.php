@@ -63,6 +63,10 @@ abstract class MetaBase extends ArrayObject
             $content = array_map(function ($content) use ($name) {
                 return static::getHtmlMeta($name, $content);
             }, array_filter($content));
+
+            if (empty($content)) {
+                return;
+            }
         } elseif (!empty($content)) {
             $content = static::getHtmlMeta($name, $content);
         } else {
@@ -81,6 +85,10 @@ abstract class MetaBase extends ArrayObject
             $href = array_map(function ($href) use ($rel) {
                 return static::getHtmlLink($rel, $href);
             }, array_filter($href));
+
+            if (empty($href)) {
+                return;
+            }
         } elseif (!empty($href)) {
             $href = static::getHtmlLink($rel, $href);
         } else {
