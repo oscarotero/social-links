@@ -15,7 +15,7 @@ class Vk extends ProviderBase implements ProviderInterface
         return $this->buildUrl('http://vk.com/share.php',
             array(
                 'url',
-                'text' => 'description',
+                'title',
                 'image',
             )
         );
