@@ -8,4 +8,8 @@ php:
   - 5.6
   - 7.0
 
-script: phpunit
+before_install:
+  - composer install
+
+script: 
+  - composer test
