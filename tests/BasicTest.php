@@ -1,8 +1,11 @@
 <?php
 
-use SocialLinks\Page;
+namespace SocialLinks;
 
-class BasicTest extends PHPUnit_Framework_TestCase
+use SocialLinks\Page;
+use PHPUnit\Framework\TestCase;
+
+class BasicTest extends TestCase
 {
     public function testPage()
     {
