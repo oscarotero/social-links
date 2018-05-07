@@ -174,8 +174,8 @@ abstract class MetaBase extends ArrayObject
     {
         $limit = isset(static::$characterLimits[$name]) ? static::$characterLimits[$name] : null;
 
-        if ($limit && strlen($content) > $limit) {
-            $content = substr($content, 0, $limit - 3).'...';
+        if ($limit && mb_strlen($content) > $limit) {
+            $content = mb_substr($content, 0, $limit - 3).'...';
         }
 
         return $content;
