@@ -71,6 +71,7 @@ digg            |  -
 email           |  -
 evernote        |  -
 facebook        | YES
+line            |  -
 linkedin        | YES
 liveinternet    |  -
 livejournal     |  -
