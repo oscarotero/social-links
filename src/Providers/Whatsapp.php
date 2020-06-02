@@ -12,7 +12,7 @@ class Whatsapp extends ProviderBase implements ProviderInterface
         $info = $this->page->get();
 
         return $this->buildUrl(
-            'https://wa.me/',
+            'https://api.whatsapp.com/send',
             null,
             array(
                 'text' => $info['title'].' '.$info['url'],
