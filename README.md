@@ -127,10 +127,6 @@ $card->addMeta('author', '@the_author'); //<meta property="twitter:author" conte
 
 There is a Symfony bundle available here: https://github.com/astina/AstinaSocialLinksBundle
 
-## Online demo
-
-http://oscarotero.com/social-links/demo/index.php
-
 ## Contributions
 
 * All code must be PSR-1 and PSR-2 compilance. You can use this [php cs-fixer](http://cs.sensiolabs.org/)
