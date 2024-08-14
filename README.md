@@ -86,6 +86,7 @@ scoopit         | YES
 sms             |  -
 stumbleupon     | YES
 telegram        |  -
+threads         |  -
 tumblr          |  -
 twitter         |  -
 viadeo          |  -
