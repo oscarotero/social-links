@@ -13,7 +13,7 @@ class Twitter extends ProviderBase implements ProviderInterface
         $text = isset($data['title']) ? trim($data['title']) : '';
 
         if (!empty($data['twitterUser']) && (strpos($text, $data['twitterUser']) === false)) {
-            if (strrpos($text, '.', -1)) {
+            if (!empty($text) && strrpos($text, '.', -1)) {
                 $text = substr($text, 0, -1);
             }
 
