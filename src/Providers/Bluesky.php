@@ -14,8 +14,7 @@ class Bluesky extends ProviderBase implements ProviderInterface
 
         return $this->buildUrl(
             'https://bsky.app/intent/compose',
-            array('url'),
-            array('text' => $text)
+            array('text' => $data['url'])
         );
     }
 }
