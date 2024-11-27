@@ -75,6 +75,7 @@ class BasicTest extends TestCase
         $this->assertEquals($page->xing->shareUrl, 'https://www.xing.com/spi/shares/new?url=http%3A%2F%2Fmypage.com');
         $this->assertEquals($page->viadeo->shareUrl, 'https://partners.viadeo.com/share?url=http%3A%2F%2Fmypage.com&comment=Page+title');
         $this->assertEquals($page->threads->shareUrl, 'https://threads.net/intent/post?text=Page+title&url=http%3A%2F%2Fmypage.com');
+        $this->assertEquals($page->bluesky->shareUrl, 'https://bsky.app/intent/compose?text=Page+title&url=http%3A%2F%2Fmypage.com');
     }
 
     /**

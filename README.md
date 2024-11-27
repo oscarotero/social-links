@@ -62,6 +62,7 @@ echo $page->plus->shareCount;
 Name            | Counter
 ----------------|--------
 blogger         |  -
+bluesky         |  -
 bobrdobr        |  -
 cabozo          |  -
 chuza           | YES
