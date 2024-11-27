@@ -9,12 +9,12 @@ class Bluesky extends ProviderBase implements ProviderInterface
      */
     public function shareUrl()
     {
-        $data = $this->page->get(array('title'));
-        $text = isset($data['title']) ? trim($data['title']) : '';
+        $data = $this->page->get(array('title', 'url'));
+        $text = isset($data['url']) ? trim($data['url']) : (isset($data['title']) ? trim($data['title']) : '');
 
         return $this->buildUrl(
             'https://bsky.app/intent/compose',
-            array('text' => $data['url'])
+            array('text' => $text)
         );
     }
 }
